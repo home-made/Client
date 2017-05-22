@@ -16,7 +16,6 @@ export default class App extends Component {
         <OrderView />
         <DishView />
         <Review />
-        <MapView />
         <History />
       </View>
     );
