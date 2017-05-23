@@ -6,13 +6,12 @@
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  */
-//Changed lines 10-15 to get Google Maps to work
+
 #import <Foundation/Foundation.h>
 
-#import <React/RCTUIManager.h>
+#import <RCTAnimation/RCTValueAnimatedNode.h>
 #import <React/RCTBridgeModule.h>
-
-#import "RCTValueAnimatedNode.h"
+#import <React/RCTUIManager.h>
 
 @interface RCTNativeAnimatedNodesManager : NSObject
 

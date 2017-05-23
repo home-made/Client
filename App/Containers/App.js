@@ -10,13 +10,9 @@ import Cuisines from '../Components/Cuisines';
 
 // const cstore = store();
 
-import ChefMap from '../Components/ChefMap.js';
 
 const App = () => {
   return (
-    <ChefMap />
-/*
-
     <Provider>
       <Router>
         <Scene key='modal' component={Modal}>
@@ -29,10 +25,6 @@ const App = () => {
         </Scene>
       </Router>
     </Provider>
-
-*/
-
-
   );
 };
 
