@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { AppRegistry, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import MapView from "react-native-maps";
 
-export default class MapView extends Component {
+export default class ChefMap extends Component {
   state = {
     mapRegion: {
       latitude: 37.78825,
@@ -9,10 +10,6 @@ export default class MapView extends Component {
       latitudeDelta: 0.0922,
       longitudeDelta: 0.0421
     }
-  };
-
-  _handleMapRegionChange = mapRegion => {
-    this.setState({ mapRegion });
   };
 
   componentWillMount() {
@@ -31,12 +28,10 @@ export default class MapView extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <MapView
-          style={{ alignSelf: "stretch", height: 700 }}
-          region={this.state.mapRegion}
-        />
-      </View>
+      <MapView
+        style={{ alignSelf: "stretch", height: 700 }}
+        region={this.state.mapRegion}
+      />
     );
   }
 }
@@ -47,15 +42,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#F5FCFF"
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10
-  },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
   }
 });

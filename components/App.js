@@ -1,23 +1,27 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Router, Scene } from "react-native-router-flux";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
+
 import Profile from "./Profile";
 import OrderView from "./OrderView";
 import DishView from "./DishView";
 import Review from "./Review";
-import MapView from "./MapView";
 import History from "./History";
+import Cuisines from "./Cuisines";
 
 export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text> App.js </Text>
-        <Profile />
-        <OrderView />
-        <DishView />
-        <Review />
-        <History />
-      </View>
+      <Router>
+        <Scene key="root">
+          <Scene
+            key="cuisines"
+            component={Cuisines}
+            title="Cuisines"
+            initial
+          />
+        </Scene>
+      </Router>
     );
   }
 }
@@ -28,15 +32,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#F5FCFF"
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10
-  },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
   }
 });
