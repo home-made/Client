@@ -1,2 +1,2 @@
-dependencies: /Users/admin/Desktop/Client/ios/homemade/main.m \
-  /Users/admin/Desktop/Client/ios/homemade/AppDelegate.h
+dependencies: /Users/seagraves/HR/Client/ios/homemade/main.m \
+  /Users/seagraves/HR/Client/ios/homemade/AppDelegate.h

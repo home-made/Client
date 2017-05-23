@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/admin/Desktop/Client/ios/homemadeTests/homemadeTests.m \
+  /Users/seagraves/HR/Client/ios/homemadeTests/homemadeTests.m \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Modules/module.modulemap \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Headers/XCUIRemote.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Headers/XCUIKeyboardKeys.h \
@@ -35,14 +35,14 @@ dependencies: \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Headers/XCTestErrors.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Headers/XCTestDefines.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Headers/XCTest.h \
-  /Users/admin/Desktop/Client/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTLog.h \
-  /Users/admin/Desktop/Client/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
-  /Users/admin/Desktop/Client/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
-  /Users/admin/Desktop/Client/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUtils.h \
-  /Users/admin/Desktop/Client/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTRootView.h \
-  /Users/admin/Desktop/Client/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridge.h \
-  /Users/admin/Desktop/Client/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeDelegate.h \
-  /Users/admin/Desktop/Client/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTJavaScriptLoader.h \
-  /Users/admin/Desktop/Client/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
-  /Users/admin/Desktop/Client/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTFrameUpdate.h \
-  /Users/admin/Desktop/Client/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTInvalidating.h
+  /Users/seagraves/HR/Client/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTLog.h \
+  /Users/seagraves/HR/Client/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTAssert.h \
+  /Users/seagraves/HR/Client/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/seagraves/HR/Client/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTUtils.h \
+  /Users/seagraves/HR/Client/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTRootView.h \
+  /Users/seagraves/HR/Client/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridge.h \
+  /Users/seagraves/HR/Client/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeDelegate.h \
+  /Users/seagraves/HR/Client/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTJavaScriptLoader.h \
+  /Users/seagraves/HR/Client/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
+  /Users/seagraves/HR/Client/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTFrameUpdate.h \
+  /Users/seagraves/HR/Client/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTInvalidating.h

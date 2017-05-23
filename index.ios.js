@@ -7,13 +7,14 @@
 import React, { Component } from "react";
 import { AppRegistry, StyleSheet, Text, View } from "react-native";
 import App from "./components/App";
+import Header from './containers/Header'
 
 export default class homemade extends Component {
   render() {
     return (
-      <View style={styles.container}>
+    <View>
         <App />
-      </View>
+    </View>
     );
   }
 }
