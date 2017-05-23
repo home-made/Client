@@ -6,8 +6,7 @@ import { Provider } from 'react-redux';
 // import store from '../Redux/Store';
 
 import HomePage from './HomePage';
-import NewPage from './NewPage';
-import AnotherPage from './AnotherPage';
+import Cuisines from '../Components/Cuisines';
 
 // const cstore = store();
 
@@ -19,12 +18,8 @@ const App = () => {
         <Scene key='modal' component={Modal}>
           <Scene key="root">
 
-            <Scene key='homepage' component={HomePage} title='HomePage' direction='vertical' />
-            <Scene key='newpage' component={NewPage} title='NewPage' />
-            <Scene key='anotherpage' component={AnotherPage} title='AnotherPage' />
+            <Scene key='cuisines' component={Cuisines} title='Cuisines' />
 
-            <Scene key="tabbar" tabs tabBarStyle={{ backgroundColor: "#FFFFFF" }}>
-            </Scene>
 
           </Scene>
         </Scene>
@@ -49,3 +44,12 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+
+
+
+
+
+            // <Scene key='homepage' component={HomePage} title='HomePage' direction='vertical' />
+            
+            {/*<Scene key="tabbar" tabs tabBarStyle={{ backgroundColor: "#FFFFFF" }}>
+            </Scene>*/}
