@@ -63,3 +63,5 @@ node_modules
 .env
 
 node_modules
+Pods
+ios/Pods

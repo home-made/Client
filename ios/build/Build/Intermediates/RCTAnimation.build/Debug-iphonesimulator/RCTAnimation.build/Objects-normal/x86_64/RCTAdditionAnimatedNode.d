@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/admin/Desktop/Client/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTAdditionAnimatedNode.m \
-  /Users/admin/Desktop/Client/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTAdditionAnimatedNode.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTValueAnimatedNode.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTAnimatedNode.h
+  /Users/seagraves/HR/Client/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTAdditionAnimatedNode.m \
+  /Users/seagraves/HR/Client/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTAdditionAnimatedNode.h \
+  /Users/seagraves/HR/Client/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTValueAnimatedNode.h \
+  /Users/seagraves/HR/Client/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTAnimatedNode.h
