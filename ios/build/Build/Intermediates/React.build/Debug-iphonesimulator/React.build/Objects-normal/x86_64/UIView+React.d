@@ -1,19 +1,19 @@
 dependencies: \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Views/UIView+React.m \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Views/UIView+React.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Views/RCTComponent.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTAssert.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTDefines.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTLog.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTUtils.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Views/RCTShadowView.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTRootView.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTBridge.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTBridgeModule.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTFrameUpdate.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTInvalidating.h \
-  /Users/admin/Desktop/Client/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
-  /Users/admin/Desktop/Client/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
-  /Users/admin/Desktop/Client/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h
+  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/node_modules/react-native/React/Views/UIView+React.m \
+  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/node_modules/react-native/React/Views/UIView+React.h \
+  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/node_modules/react-native/React/Views/RCTComponent.h \
+  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/node_modules/react-native/React/Views/RCTShadowView.h \
+  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/node_modules/react-native/React/Base/RCTRootView.h \
+  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/Yoga.h \
+  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGEnums.h \
+  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/ios/build/Build/Products/Debug-iphonesimulator/include/yoga/YGMacros.h
