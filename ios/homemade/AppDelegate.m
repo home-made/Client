@@ -8,11 +8,10 @@
  */
 
 #import "AppDelegate.h"
+#import "A0LockReact.h"
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-
-#import "A0LockReact.h"
 
 @implementation AppDelegate
 

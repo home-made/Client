@@ -1,0 +1,43 @@
+dependencies: \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/UI/Private/A0Connection+DatabaseValidation.m \
+  /Users/joe/homemade/ios/Pods/Target\ Support\ Files/Lock/Lock-prefix.pch \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/UI/Private/A0Connection+DatabaseValidation.h \
+  /Users/joe/homemade/ios/Pods/Lock/CocoaPods/Lock.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0APIClient.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0APIRouter.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0Lock.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0APIClientProvider.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0AuthenticatorProvider.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0Telemetry.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0UserAPIClient.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0Application.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0Strategy.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0Connection.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0Errors.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0ErrorCode.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0Token.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0UserProfile.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0IdentityProviderCredentials.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Provider/A0IdentityProviderAuthenticator.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Provider/A0BaseAuthenticator.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Provider/A0AuthenticationProvider.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0AuthParameters.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0UserIdentity.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0LockLogger.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0LockNotification.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/UI/UI.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/UI/A0LockViewController.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/UI/A0ContainerViewController.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/UI/A0KeyboardEnabledView.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/UI/A0LockEventDelegate.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/UI/A0LockSignUpViewController.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/UI/A0Lock+A0LockViewController.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/CoreUI/A0Theme.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/CoreUI/A0ServiceTheme.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/TouchID/A0TouchIDLockViewController.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/TouchID/A0Lock+A0TouchIDLockViewController.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/SMS/A0Lock+A0SMSLockViewController.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/SMS/A0SMSLockViewController.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Email/A0Lock+A0EmailLockViewController.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Email/A0EmailLockViewController.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/WebView/A0WebViewAuthenticator.h

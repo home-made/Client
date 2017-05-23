@@ -1,0 +1,37 @@
+dependencies: \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/WebView/A0WebViewController.m \
+  /Users/joe/homemade/ios/Pods/Target\ Support\ Files/Lock/Lock-prefix.pch \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/WebView/A0WebViewController.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/WebView/A0WebAuthenticable.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Provider/A0AuthenticationProvider.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0Errors.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0ErrorCode.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0Application.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0Strategy.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0APIClient.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0APIRouter.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0Token.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/Private/A0WebAuthentication.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/Private/NSDictionary+A0QueryParameters.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0AuthParameters.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0Lock.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0APIClientProvider.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0AuthenticatorProvider.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/Private/Constants.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/Private/A0Logging.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/Private/A0Logger.h \
+  /Users/joe/homemade/ios/Pods/Lock/Lock/Core/A0PKCE.h \
+  /Users/joe/homemade/ios/Pods/Masonry/Masonry/Masonry.h \
+  /Users/joe/homemade/ios/Pods/Masonry/Masonry/MASUtilities.h \
+  /Users/joe/homemade/ios/Pods/Masonry/Masonry/View+MASAdditions.h \
+  /Users/joe/homemade/ios/Pods/Masonry/Masonry/MASConstraintMaker.h \
+  /Users/joe/homemade/ios/Pods/Masonry/Masonry/MASConstraint.h \
+  /Users/joe/homemade/ios/Pods/Masonry/Masonry/MASViewAttribute.h \
+  /Users/joe/homemade/ios/Pods/Masonry/Masonry/View+MASShorthandAdditions.h \
+  /Users/joe/homemade/ios/Pods/Masonry/Masonry/ViewController+MASAdditions.h \
+  /Users/joe/homemade/ios/Pods/Masonry/Masonry/NSArray+MASAdditions.h \
+  /Users/joe/homemade/ios/Pods/Masonry/Masonry/NSArray+MASShorthandAdditions.h \
+  /Users/joe/homemade/ios/Pods/Masonry/Masonry/MASCompositeConstraint.h \
+  /Users/joe/homemade/ios/Pods/Masonry/Masonry/MASViewConstraint.h \
+  /Users/joe/homemade/ios/Pods/Masonry/Masonry/MASLayoutConstraint.h \
+  /Users/joe/homemade/ios/Pods/Masonry/Masonry/NSLayoutConstraint+MASDebugAdditions.h

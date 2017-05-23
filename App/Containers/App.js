@@ -6,25 +6,18 @@ import { Provider } from 'react-redux';
 // import store from '../Redux/Store';
 
 import HomePage from './HomePage';
+import NewPage from './NewPage';
 import Cuisines from '../Components/Cuisines';
+import Sidebar from  './Sidebar';
 
 // const cstore = store();
 
 
 const App = () => {
   return (
-    <Provider>
-      <Router>
-        <Scene key='modal' component={Modal}>
-          <Scene key="root">
-
-            <Scene key='cuisines' component={Cuisines} title='Cuisines' />
-
-
-          </Scene>
-        </Scene>
-      </Router>
-    </Provider>
+    <View style={styles.navbar}>
+      <Sidebar />
+    </View>
   );
 };
 
@@ -40,6 +33,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
     margin: 10
+  },
+  navbar: {
+    marginTop: 50
   }
 });
 
@@ -48,8 +44,6 @@ export default App;
 
 
 
+            // <Scene key='cuisines' component={Cuisines} title='Cuisines' />
 
-            // <Scene key='homepage' component={HomePage} title='HomePage' direction='vertical' />
             
-            {/*<Scene key="tabbar" tabs tabBarStyle={{ backgroundColor: "#FFFFFF" }}>
-            </Scene>*/}

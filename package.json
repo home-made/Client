@@ -4,14 +4,21 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "clean": "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm cache clean",
+    "newclear": "rm -rf $TMPDIR/react-* && watchman watch-del-all && rm -rf ios/build/ModuleCache/* && rm -rf node_modules/ && npm cache clean && npm i"
   },
   "dependencies": {
+    "@expo/vector-icons": "^5.0.0",
+    "jwt-decode": "^2.2.0",
     "native-base": "^2.1.4",
     "react": "16.0.0-alpha.6",
     "react-native": "0.44.0",
+    "react-native-lock": "^0.6.0",
+    "react-native-lock-ios": "0.0.5",
     "react-native-maps": "^0.15.2",
-    "react-native-router-flux": "^3.39.1"
+    "react-native-router-flux": "^3.39.1",
+    "redux-logger": "^3.0.6"
   },
   "devDependencies": {
     "babel-jest": "20.0.3",

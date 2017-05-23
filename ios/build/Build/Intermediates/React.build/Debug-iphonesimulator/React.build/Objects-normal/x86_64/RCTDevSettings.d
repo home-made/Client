@@ -1,23 +1,23 @@
 dependencies: \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Modules/RCTDevSettings.mm \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Modules/RCTDevSettings.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTBridge.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTDefines.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTBridgeModule.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTFrameUpdate.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTInvalidating.h \
-  /Users/admin/Desktop/Client/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JavaScriptCore.h \
-  /Users/admin/Desktop/Client/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JSCWrapper.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Modules/JSCSamplingProfiler.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTBridge+Private.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTEventDispatcher.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTLog.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTAssert.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Base/RCTUtils.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/Profiler/RCTProfile.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/DevSupport/RCTPackagerClient.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/DevSupport/RCTPackagerClientResponder.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/DevSupport/RCTReloadPackagerMethod.h \
-  /Users/admin/Desktop/Client/node_modules/react-native/React/DevSupport/RCTSamplingProfilerPackagerMethod.h
+  /Users/joe/homemade/node_modules/react-native/React/Modules/RCTDevSettings.mm \
+  /Users/joe/homemade/node_modules/react-native/React/Modules/RCTDevSettings.h \
+  /Users/joe/homemade/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/joe/homemade/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/joe/homemade/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/joe/homemade/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/joe/homemade/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/joe/homemade/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/joe/homemade/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/joe/homemade/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JavaScriptCore.h \
+  /Users/joe/homemade/ios/build/Build/Products/Debug-iphonesimulator/include/jschelpers/JSCWrapper.h \
+  /Users/joe/homemade/node_modules/react-native/React/Modules/JSCSamplingProfiler.h \
+  /Users/joe/homemade/node_modules/react-native/React/Base/RCTBridge+Private.h \
+  /Users/joe/homemade/node_modules/react-native/React/Base/RCTEventDispatcher.h \
+  /Users/joe/homemade/node_modules/react-native/React/Base/RCTLog.h \
+  /Users/joe/homemade/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/joe/homemade/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/joe/homemade/node_modules/react-native/React/Profiler/RCTProfile.h \
+  /Users/joe/homemade/node_modules/react-native/React/DevSupport/RCTPackagerClient.h \
+  /Users/joe/homemade/node_modules/react-native/React/DevSupport/RCTPackagerClientResponder.h \
+  /Users/joe/homemade/node_modules/react-native/React/DevSupport/RCTReloadPackagerMethod.h \
+  /Users/joe/homemade/node_modules/react-native/React/DevSupport/RCTSamplingProfilerPackagerMethod.h
