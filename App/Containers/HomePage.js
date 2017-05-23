@@ -35,7 +35,7 @@ export default class HomePage extends Component {
         AsyncStorage.profile = profile;
         AsyncStorage.token = token;
         console.log(AsyncStorage);
-        Actions.newpage();
+        Actions.cuisines();
       }
     })
   }
