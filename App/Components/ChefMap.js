@@ -15,6 +15,7 @@ const ASPECT_RATIO = width / height;
 const LATITUDE = 33.9760019;
 const LONGITUDE = -118.3930801;
 const LATITUDE_DELTA = 0.0922;
+//determines how
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 
@@ -57,11 +58,13 @@ export default class Map extends Component {
         <View style={styles.container}>
           <MapView
             provider={PROVIDER_GOOGLE}
+            showUserLocation={true}
             style={styles.map}
             initialRegion={this.state.region}
           >
             {this.state.seedData.map((marker, idx)=>{
               return <MapView.Marker
+                key={marker.title}
                 coordinate={marker.latlng}
                 title={marker.title}
               />
