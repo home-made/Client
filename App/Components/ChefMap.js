@@ -9,8 +9,8 @@ import {
   View
 } from 'react-native';
 
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-
+import MapView from 'react-native-maps';
+import { Actions, Router, Scene, Modal } from "react-native-router-flux";
 const { width, height } = Dimensions.get('window');
 
 const ASPECT_RATIO = width / height;
@@ -38,13 +38,7 @@ export default class Map extends Component {
       //coords must be specified in following format:
       //{latlng: {latitude: 33.9210313, longitude: -118.4183891}, title: "Kagura Japanese"}
 
-      seedData: [
-        {latlng: {latitude: 33.9210313, longitude: -118.4183891}, title: "Kagura Japanese"}, 
-        {latlng: {latitude: 33.9620653, longitude: -118.3689844}, title: "Maria's Tacos"},
-        {latlng: {latitude: 33.9911192, longitude: -118.3979346}, title: "Chrargha House"},
-        {latlng: {latitude: 34.0628019, longitude: -118.1236872}, title: "Mama Lu's"},
-        {latlng: {latitude: 34.0617777, longitude: -118.1360685}, title: "Hot Pot Hot Pot"}
-      ]
+      data: []
     }
   }
 
@@ -56,7 +50,14 @@ export default class Map extends Component {
   componentDidMount() {
     axios.get('http://localhost:3000/chef')
       .then( (response) => {
-        
+        console.log("got the chefs", response);
+
+        var data = response.data.map((chef)=> {
+          
+          return {latlng: {latitude: chef.location.geo_lat, longitude: chef.location.geo_lng}, title: chef.firstName + " " + chef.lastName}  
+        });
+
+        this.setState({data});
       })
       .catch( (error) => {
        console.log(error);
@@ -71,13 +72,13 @@ export default class Map extends Component {
 
         <View style={styles.container}>
           <MapView
-            provider={PROVIDER_GOOGLE}
             showsUserLocation
             style={styles.map}
             initialRegion={this.state.region}
           >
-            {this.state.seedData.map((marker, idx)=>{
+            {this.state.data.map((marker, idx)=>{
               return <MapView.Marker
+                onPress={()=> Actions.cuisines()}
                 key={marker.title}
                 coordinate={marker.latlng}
                 title={marker.title}

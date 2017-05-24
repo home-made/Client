@@ -15,20 +15,20 @@ import ChefMap from '../Components/ChefMap.js';
 
 const App = () => {
   return (
-    <ChefMap />
 
-    /*<Provider>
+    <Provider>
       <Router>
         <Scene key='modal' component={Modal}>
           <Scene key="root">
 
             <Scene key='cuisines' component={Cuisines} title='Cuisines' />
+            <Scene key='chefmap' component={ChefMap} title='ChefMap' />
 
 
           </Scene>
         </Scene>
       </Router>
-    </Provider>*/
+    </Provider>
 
   );
 };

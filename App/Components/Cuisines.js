@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, View, ScrollView  } from "react-native";
 import { Container, Content, List, ListItem, Text } from "native-base";
+import {Actions} from "react-native-router-flux";
 
 export default class Cuisines extends Component {
   render() {
@@ -15,7 +16,7 @@ export default class Cuisines extends Component {
             <List style={{ marginTop: 50 }}>
               {genres.map(genre => {
                 return (
-                  <ListItem>
+                  <ListItem onPress={()=> Actions.chefmap()}>
                     <Text>
                       {genre}
                     </Text>
