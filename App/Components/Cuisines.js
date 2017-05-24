@@ -4,7 +4,7 @@ import { Container, Content, List, ListItem, Text } from "native-base";
 
 export default class Cuisines extends Component {
   render() {
-    let genres = "Barbecue,Burgers,Chinese,Indian,Italian,Japanese,Korean,Mediterranean,Mexican,Pizza,Sandwiches,Sushi,Thai,Vegetarian,Vietnamese,Other".split(
+    let genres = "Barbecue,Burgers,Chinese,Indian,Italian,Japanese,Korean,Mediterranean,Mexican,Pizza,Sandwiches,Sushi,Thai,Vegetarian,Vietnamese,American,Ethiopian,Other".split(
       ","
     );
 
