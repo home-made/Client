@@ -12,15 +12,43 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 const { width, height } = Dimensions.get('window');
 
 const ASPECT_RATIO = width / height;
-const LATITUDE = 37.78825;
-const LONGITUDE = -122.4324;
+const LATITUDE = 33.9760019;
+const LONGITUDE = -118.3930801;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 
 
+export default class Map extends Component {
 
-export default class ChefMap extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      region: {
+        latitude: LATITUDE,
+        longitude: LONGITUDE,
+        latitudeDelta: LATITUDE_DELTA,
+        longitudeDelta: LONGITUDE_DELTA,
+      },
+
+      //coords must be specified in following format:
+      //{latlng: {latitude: 33.9210313, longitude: -118.4183891}, title: "Kagura Japanese"}
+
+      seedData: [
+        {latlng: {latitude: 33.9210313, longitude: -118.4183891}, title: "Kagura Japanese"}, 
+        {latlng: {latitude: 33.9620653, longitude: -118.3689844}, title: "Maria's Tacos"},
+        {latlng: {latitude: 33.9911192, longitude: -118.3979346}, title: "Chrargha House"},
+        {latlng: {latitude: 34.0628019, longitude: -118.1236872}, title: "Mama Lu's"},
+        {latlng: {latitude: 34.0617777, longitude: -118.1360685}, title: "Hot Pot Hot Pot"}
+      ]
+    }
+  }
+
+  //Callback that is called continuously when the user is dragging the map.
+  onRegionChange(region) {
+    this.setState({ region });
+  }
 
   render() {
     return (
@@ -30,13 +58,16 @@ export default class ChefMap extends Component {
           <MapView
             provider={PROVIDER_GOOGLE}
             style={styles.map}
-            initialRegion={{
-              latitude: LATITUDE,
-              longitude: LONGITUDE,
-              latitudeDelta: LATITUDE_DELTA,
-              longitudeDelta: LONGITUDE_DELTA,
-            }}
-          />
+            initialRegion={this.state.region}
+          >
+            {this.state.seedData.map((marker, idx)=>{
+              return <MapView.Marker
+                coordinate={marker.latlng}
+                title={marker.title}
+              />
+            })}
+
+          </MapView>
         </View>
       </View>
     );
