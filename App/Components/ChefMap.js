@@ -1,4 +1,4 @@
-var axios = require('axios');
+//var axios = require('axios');
 
 import React, { Component } from 'react';
 import {
@@ -53,17 +53,17 @@ export default class Map extends Component {
     this.setState({ region });
   }
 
-  componentDidMount() {
-    axios.get('http://localhost:3000/chef')
-      .then( (response) => {
+  // componentDidMount() {
+  //   axios.get('http://localhost:3000/chef')
+  //     .then( (response) => {
         
-      })
-      .catch( (error) => {
-       console.log(error);
-      });
+  //     })
+  //     .catch( (error) => {
+  //      console.log(error);
+  //     });
 
 
-  }
+  // }
 
   render() {
     return (
@@ -71,7 +71,7 @@ export default class Map extends Component {
 
         <View style={styles.container}>
           <MapView
-            provider={PROVIDER_GOOGLE}
+            //provider={PROVIDER_GOOGLE}
             showsUserLocation
             style={styles.map}
             initialRegion={this.state.region}
