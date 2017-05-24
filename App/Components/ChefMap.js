@@ -22,7 +22,7 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 
 
-export default class Map extends Component {
+export default class ChefMap extends Component {
 
   constructor(props){
     super(props);
