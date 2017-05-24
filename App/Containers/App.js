@@ -11,9 +11,11 @@ import ChefMap from '../Components/ChefMap.js';
 
 // const cstore = store();
 
+
 const App = () => {
   return (
    
+
     <Provider>
       <Router>
         <Scene key='modal' component={Modal}>
