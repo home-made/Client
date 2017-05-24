@@ -7,8 +7,10 @@ import { Provider } from 'react-redux';
 
 import HomePage from './HomePage';
 import Cuisines from '../Components/Cuisines';
+import ChefMap from '../Components/ChefMap.js';
 
 // const cstore = store();
+
 
 
 const App = () => {
@@ -25,6 +27,8 @@ const App = () => {
         </Scene>
       </Router>
     </Provider>
+
+
   );
 };
 
