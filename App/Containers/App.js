@@ -10,6 +10,7 @@ import Cuisines from '../Components/Cuisines';
 
 // const cstore = store();
 
+
 const App = () => {
   return (
     <Provider>

@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTTransformAnimatedNode.m \
-  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTTransformAnimatedNode.h \
-  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTAnimatedNode.h \
-  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTValueAnimatedNode.h
+  /Users/admin/Client/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTTransformAnimatedNode.m \
+  /Users/admin/Client/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTTransformAnimatedNode.h \
+  /Users/admin/Client/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTAnimatedNode.h \
+  /Users/admin/Client/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTValueAnimatedNode.h

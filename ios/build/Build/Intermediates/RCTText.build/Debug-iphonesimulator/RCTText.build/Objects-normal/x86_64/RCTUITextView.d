@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/node_modules/react-native/Libraries/Text/RCTUITextView.m \
-  /Users/jmendoza/Desktop/Scratch/Hack-Reactor/hrla-14/home-made/Client/node_modules/react-native/Libraries/Text/RCTUITextView.h
+  /Users/admin/Client/node_modules/react-native/Libraries/Text/RCTUITextView.m \
+  /Users/admin/Client/node_modules/react-native/Libraries/Text/RCTUITextView.h
