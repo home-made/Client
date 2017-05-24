@@ -13,8 +13,6 @@ import ChefMap from '../Components/ChefMap.js';
 
 
 
-
-
 const App = () => {
   return (
     <Provider>

@@ -62,8 +62,6 @@ node_modules
 
 #ENV
 .env
-<<<<<<< HEAD
-
 
 # node.js
 #
@@ -93,3 +91,4 @@ ios/Pods
 node_modules
 Pods
 ios/Pods
+
