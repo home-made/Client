@@ -13,8 +13,9 @@ import ChefMap from '../Components/ChefMap.js';
 
 const App = () => {
   return (
+    <ChefMap />
    
-    <Provider>
+    /*<Provider>
       <Router>
         <Scene key='modal' component={Modal}>
           <Scene key="root">
@@ -25,7 +26,10 @@ const App = () => {
           </Scene>
         </Scene>
       </Router>
-    </Provider>
+    </Provider>*/
+
+
+
 
   );
 };
