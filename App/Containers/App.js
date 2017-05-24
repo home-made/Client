@@ -7,11 +7,17 @@ import { Provider } from 'react-redux';
 
 import HomePage from './HomePage';
 import Cuisines from '../Components/Cuisines';
+import ChefMap from '../Components/ChefMap.js';
 
 // const cstore = store();
 
 const App = () => {
   return (
+
+    <ChefMap />
+
+
+/*    
     <Provider>
       <Router>
         <Scene key='modal' component={Modal}>
@@ -24,6 +30,9 @@ const App = () => {
         </Scene>
       </Router>
     </Provider>
+*/
+
+
   );
 };
 
