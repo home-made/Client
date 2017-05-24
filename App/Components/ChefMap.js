@@ -1,3 +1,5 @@
+var axios = require('axios');
+
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -51,6 +53,18 @@ export default class Map extends Component {
     this.setState({ region });
   }
 
+  componentDidMount() {
+    axios.get('http://localhost:3000/chef')
+      .then( (response) => {
+        
+      })
+      .catch( (error) => {
+       console.log(error);
+      });
+
+
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -58,7 +72,7 @@ export default class Map extends Component {
         <View style={styles.container}>
           <MapView
             provider={PROVIDER_GOOGLE}
-            showUserLocation={true}
+            showsUserLocation
             style={styles.map}
             initialRegion={this.state.region}
           >
