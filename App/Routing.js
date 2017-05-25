@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Router, Scene, Modal } from "react-native-router-flux";
-import { Provider } from 'react-redux';
+import { Router, Scene, Modal, ActionConst } from "react-native-router-flux";
 
 // import store from '../Redux/Store';
 
@@ -9,7 +8,8 @@ import HomePage from './Containers/HomePage';
 import NewPage from './Containers/NewPage';
 import Cuisines from './Components/Cuisines';
 import NavBar from  './Containers/NavBar';
-import App from './Containers/App';
+import ActionMenu from './Containers/ActionMenu';
+import NavigationDrawer from './Containers/Drawer';
 
 // const cstore = store();
 
@@ -17,17 +17,17 @@ import App from './Containers/App';
 const Routing = () => {
   return (
     <Router>
-      <Scene key='modal' component={Modal}>
-        <Scene key="root">
+      <Scene key="root">
+        <Scene key='homepage' component={HomePage} direction='vertical' style={styles.navbar} initial />
 
-          <Scene key='homepage' component={HomePage} title='HomePage' direction='vertical' initial />
-          <Scene key='app' component={App} title='App' direction='vertical' initial />
-          
-          <Scene key="navbar" component={NavBar} title='NavBar' style={styles.navbar} >
+        <Scene key="drawer" type={ActionConst.RESET} component={NavigationDrawer} open={false} >
+          <Scene key="main" initial>
+            <Scene key='cuisines' component={Cuisines} title='Cuisines' direction='vertical' />
+            <Scene key='actionmenu' component={ActionMenu} title='ActionMenu' direction='vertical' />
             <Scene key='newpage' component={NewPage} title='NewPage' direction='vertical' />
           </Scene>
-
         </Scene>
+
       </Scene>
     </Router>
   );
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     margin: 10
   },
   navbar: {
-    marginTop: 50
+    marginTop: 0
   }
 });
 
@@ -56,6 +56,5 @@ export default Routing;
 
 
 
-            // <Scene key='cuisines' component={Cuisines} title='Cuisines' />
 
             

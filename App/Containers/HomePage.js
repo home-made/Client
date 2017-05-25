@@ -35,9 +35,14 @@ export default class HomePage extends Component {
         AsyncStorage.profile = profile;
         AsyncStorage.token = token;
         console.log(AsyncStorage);
-        Actions.app();
+        Actions.drawer();
       }
     })
+  }
+
+  showDrawer() {
+    console.log('OPEN');
+    Actions.refresh({ key: 'drawerChildrenWrapper', open: value => !value });
   }
 
   render() {
@@ -45,7 +50,7 @@ export default class HomePage extends Component {
     return (
       <View style={styles.container}>
         <TouchableHighlight onPress={this.onLogin}>
-          <Text>
+          <Text style={styles.welcome}>
             Log In
           </Text>
         </TouchableHighlight>
