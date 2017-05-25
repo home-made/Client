@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import axios from 'axios';
 import { Container, Content, List, Header, Text, Button } from 'native-base';
-import OrderItem from './OrderItem.js';
+import CheckOutItem from './CheckOutItem.js';
 
 export default class Checkout extends Component {
     /*
@@ -19,20 +19,50 @@ export default class Checkout extends Component {
         dishCounter: {}
       }
       this.incrementDishCount = this.incrementDishCount.bind(this);
+      this.decrementDishCount = this.decrementDishCount.bind(this);
       this.deleteDish = this.deleteDish.bind(this);
 
     }
 
     incrementDishCount(key){
-      console.log("the key is ", key);
       
-      console.log("incrementItemCount has been clicked");
+      var newCounter = this.state.dishCounter;
+      newCounter[key]++;
+
+      this.setState({
+        dishCounter: newCounter
+      });
+    }
+
+    decrementDishCount(key){
+      console.log("the key is ", key);
+      var newCounter = this.state.dishCounter;
+      
+      console.log("the old state is ", this.state.dishCounter);
+      var count = newCounter[key];
+      count-=1;
+
+      if (count <= 0) {
+        newCounter[key] = 0;
+        this.setState({ dishCounter: newCounter});
+
+      } else {
+        newCounter[key] -=1;
+        this.setState({ dishCounter: newCounter});
+      }
+  
+      console.log("the new state is ", this.state.dishCounter);
 
     }
 
     deleteDish(key){
-      //var newData = this.state.data.filter(dish => return dish)
+      var newData = this.state.data.filter(dish => {
+        return dish._id !== key;
+      });
 
+      this.setState({
+        data: newData
+      });
     }
     
 
@@ -91,15 +121,17 @@ export default class Checkout extends Component {
             <Content>
               <List>
                   {this.state.data.map((orderItem) => {
-                    return <OrderItem 
+                    return <CheckOutItem 
                              key={orderItem._id}
+                             dishCounter={this.state.dishCounter}
                              deleteDish={this.deleteDish}
                              incrementDishCount={this.incrementDishCount} 
+                             decrementDishCount={this.decrementDishCount}
                              orderItem={orderItem} />
                   })}
               </List>
               <Button light>
-                <Text> Click Me! </Text>
+                <Text> Submit Order </Text>
               </Button>
             </Content>
           </Container>
