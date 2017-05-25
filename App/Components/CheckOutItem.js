@@ -38,7 +38,7 @@ export default class CheckOutItem extends Component {
             <Body>
                 <Text>{this.itemName}</Text>
                 <Row style={{justifyContent: "space-around", alignItems: "flex-start"}}>
-                <Text>{this.dishCounter[this.id]}</Text>
+                <Text>Amt: ${this.dishCounter[this.id].cashDonation} Qty: {this.dishCounter[this.id].amount}</Text>
 
                 <Button onPress={this.handleIncrement} light small>
                   <Text>+</Text>

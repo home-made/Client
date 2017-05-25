@@ -9,50 +9,52 @@ export default class Checkout extends Component {
       Will need the following for Checkout to work
         -Array of dishes from a cook
         -An object that keeps track of the count for each dish
-        -chefID?
+        -chefId?
     */
     constructor(props){
       super(props);
       this.state = {
         data: [],
-        chefID: '',
-        dishCounter: {}
+        chefId: '',
+        customerId: '',
+        dishCounter: {},
+        cashTotal: 0
       }
       this.incrementDishCount = this.incrementDishCount.bind(this);
       this.decrementDishCount = this.decrementDishCount.bind(this);
       this.deleteDish = this.deleteDish.bind(this);
+      this.calculateTotal = this.calculateTotal.bind(this);
+      this.submitOrder = this.submitOrder.bind(this);
 
     }
 
     incrementDishCount(key){
-      
-      var newCounter = this.state.dishCounter;
-      newCounter[key]++;
+      var newDishCounter = this.state.dishCounter;
+      var newCount = newDishCounter[key].amount;
+      newDishCounter[key].amount = newCount + 1;
 
       this.setState({
-        dishCounter: newCounter
+        dishCounter: newDishCounter
       });
+
+      this.calculateTotal();
     }
 
     decrementDishCount(key){
-      console.log("the key is ", key);
-      var newCounter = this.state.dishCounter;
-      
-      console.log("the old state is ", this.state.dishCounter);
-      var count = newCounter[key];
-      count-=1;
+      var newDishCounter = this.state.dishCounter;
+      var newCount = newDishCounter[key].amount;
+      newCount = newCount - 1;
 
-      if (count <= 0) {
-        newCounter[key] = 0;
-        this.setState({ dishCounter: newCounter});
+      if (newCount <= 0) {
+        newDishCounter[key].amount = 0;
+        this.setState({ dishCounter: newDishCounter});
+        this.calculateTotal();
 
       } else {
-        newCounter[key] -=1;
-        this.setState({ dishCounter: newCounter});
+        newDishCounter[key].amount = newCount;
+        this.setState({ dishCounter: newDishCounter});
+        this.calculateTotal();
       }
-  
-      console.log("the new state is ", this.state.dishCounter);
-
     }
 
     deleteDish(key){
@@ -64,9 +66,59 @@ export default class Checkout extends Component {
         data: newData
       });
     }
+
+    calculateTotal(){
+      var dishCounter = this.state.dishCounter;
+      var total = 0;
+
+      for (var dishID in dishCounter) {
+        var amount = dishCounter[dishID].amount;
+        amount *= dishCounter[dishID].cashDonation;
+
+        total+=amount;
+        amount = 0;
+      }
+
+      this.setState({
+        cashTotal: total
+      });
+
+    }
+
+    submitOrder(){
+      //will need the customerId && chefId to submit order to DB
+      //hardcoded info for demo purposes
+
+      /*
+      Note: I think we should set the state.dishCounter obj as
+      the cart property on an Order because that dishCounter obj
+      has the quantity per dish that was placed in an order. just 
+      not sure what the ID for a dish is in the DB.
+      */
+
+      
+      var chefId = "7564fjasdif"; //Luke Skywalker 
+      var customerId = "axncmufid745"; //Darth Vader
+      var cashTotal = this.state.cashTotal;
+
+      var newOrder = {
+        chefId: chefId,
+        customerId: customerId,
+        cart: [12],
+        status: 12,
+        cashTotal: cashTotal,
+      }
+
+      axios.post('http://localhost:3000/orders', newOrder)
+        .then(function (response) {
+          console.log("The success response inside checkout post is ", response);
+        })
+        .catch(function (error) {
+          console.log("The error message inside checkout post is ", error);
+        });
+
+    }
     
-
-
     /* code inside componentDidMount doesn't reflect actual 
        workflow. performing axios requests to mimic functionality.
        actual data will be retrieved once components are actually
@@ -78,32 +130,42 @@ export default class Checkout extends Component {
       // "location": { "geo_lat": 33.9210313, "geo_lng":  -118.4183891 }
       axios.get('http://localhost:3000/chef?geo_lat=33.9210313&geo_lng=-118.4183891')
         .then(response => {
-          var chefID = response.data[0].authId;
+          var chefId = response.data[0].authId;
 
-          axios.get(`http://localhost:3000/chef/${chefID}`)
+          axios.get(`http://localhost:3000/chef/${chefId}`)
             .then(response => {
               var chefDishes = response.data[1];
               var dishItems = {};
+
+              console.log("the chefDishes are ", chefDishes);
               
-              chefDishes.map(dish => dishItems[dish._id] = 0 );
+              chefDishes.map(dish => {
+                dishItems[dish._id] = {
+                  amount: 0,
+                  cashDonation: dish.cashDonation
+                }
+              });
 
               context.setState({
                 data: chefDishes,
-                chefID: chefID,
+                chefId: chefId,
                 dishCounter: dishItems
               });    
             })
             .catch(error => {
-              console.log("The error inside axios get /chef/:chefID inside checkout is ", error);
+              console.log("The error inside axios get /chef/:chefId inside checkout is ", error);
             });
 
         })
         .catch(error => {
             console.log('The error inside Checkout.js is ', error);
         });
+
+        
    }
 
     render() {
+      console.log("the state is ", this.state);
       if (!this.state.data) {
         return( 
           <Container>
@@ -116,6 +178,7 @@ export default class Checkout extends Component {
         
       } else {
         return (
+          
           <Container>
             <Header><Text>Checkout</Text></Header>
             <Content>
@@ -127,11 +190,13 @@ export default class Checkout extends Component {
                              deleteDish={this.deleteDish}
                              incrementDishCount={this.incrementDishCount} 
                              decrementDishCount={this.decrementDishCount}
+                             submitOrder={this.submitOrder}
                              orderItem={orderItem} />
                   })}
               </List>
-              <Button light>
-                <Text> Submit Order </Text>
+              <Header><Text>Total: ${this.state.cashTotal}</Text></Header>
+              <Button onPress={this.submitOrder} light>
+                <Text>Submit Order</Text>
               </Button>
             </Content>
           </Container>
