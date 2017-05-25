@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/joe/homemade/node_modules/react-native-vector-icons/RNVectorIconsManager/RNVectorIconsManager.m \
-  /Users/joe/homemade/node_modules/react-native-vector-icons/RNVectorIconsManager/RNVectorIconsManager.h \
+  /Users/joe/homemade/node_modules/@expo/vector-icons/vendor/react-native-vector-icons/RNVectorIconsManager/RNVectorIconsManager.m \
+  /Users/joe/homemade/node_modules/@expo/vector-icons/vendor/react-native-vector-icons/RNVectorIconsManager/RNVectorIconsManager.h \
   /Users/joe/homemade/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
   /Users/joe/homemade/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
   /Users/joe/homemade/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTLog.h \
