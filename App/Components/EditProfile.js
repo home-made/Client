@@ -8,12 +8,38 @@ import axios from "axios";
 export default class EditProfile extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      userId: '',
+      userName: '',
+      userPic: ''
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillMount() {
+    let userId, userName, userPic;
+    async function getProfile() {
+      try {
+        const data = await AsyncStorage.getItem('profile');
+        if (data !== null && data !== undefined) {
+          // console.log('async data: ', data);
+          data = JSON.parse(data);
+          userId = data.identityId, userName = data.name, userPic = data.extraInfo.picture_large;
+        }
+      } catch (err) {
+        console.log('Error getting data: ', err);
+      }
+    }
+
+    getProfile()
+      .then(() => {
+        this.setState({ userId: userId, userName: userName, userPic: userPic })
+      })
+  }
+
   handleSubmit() {
-    let send = { authId: AsyncStorage.profile.userId };
+    let send = { authId: this.state.userId };
+    console.log('SEND: ', send);
     if (this.state.address) {
       send.address = this.state.address;
     }
@@ -28,7 +54,6 @@ export default class EditProfile extends Component {
   }
 
   render() {
-    console.log("PROFILE IS", AsyncStorage.profile);
     return (
       <View
         style={{
@@ -39,7 +64,7 @@ export default class EditProfile extends Component {
         }}
       >
         <Text>
-          {AsyncStorage.profile.name}
+          {this.state.userName}
         </Text>
 
         <Image
@@ -51,7 +76,7 @@ export default class EditProfile extends Component {
             marginBottom: 20
           }}
           source={{
-            uri: AsyncStorage.profile.extraInfo.picture_large
+            uri: this.state.userPic
           }}
         />
 
