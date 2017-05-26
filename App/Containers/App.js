@@ -37,13 +37,17 @@ class App extends Component {
   }
 
   setCuisineType(genre) {
+    
     this.setState({cuisineType: genre}, () => {
       let url = `http://localhost:3000/chef/style/${this.state.cuisineType}`;
       axios
         .get(url)
         .then(res => this.setState({chefs: res.data}, () => {
           if(res.data.length > 0) {
-            Actions.chefList();            
+                            Actions.chefList({type:ActionConst.RESET});
+
+                console.log('yurr')
+            
           }
         }))
         .catch(err => {
@@ -57,22 +61,21 @@ class App extends Component {
   }
 
   render() {
-    return (
-        <Router>
-          <Scene key="root">
-
-            <Scene key="drawer" type={ActionConst.RESET} component={NavigationDrawer} open={false} >
-              <Scene key="main" initial>
-                <Scene key="cuisines" component={Cuisines} title="Cuisines" setCuisineType={this.setCuisineType} />
-                <Scene key="chefList" component={ChefList} title="Chefs" fetchChefs={this.fetchChefs} setChef={this.setChef} />
-                <Scene key="profile"  chef={this.state.user} component={Profile}  getChef={this.getChef} />
-                <Scene key="chefMap"  component={ChefMap} />
-                <Scene key="checkout" component={Checkout} /> 
-              </Scene>
-            </Scene>
-
+    const scenes = Actions.create(
+      <Scene key="root">
+        <Scene key="drawer" type={ActionConst.RESET} component={NavigationDrawer} open={false} >
+          <Scene key="main" initial>
+            <Scene key="cuisines" component={Cuisines} title="Cuisines" setCuisineType={this.setCuisineType} />
+            <Scene key="chefList" component={ChefList} title="Chefs" fetchChefs={this.fetchChefs} setChef={this.setChef} />
+            <Scene key="profile"  chef={this.state.user} component={Profile}  getChef={this.getChef} />
+            <Scene key="chefMap"  component={ChefMap} />
+            <Scene key="checkout" component={Checkout} /> 
           </Scene>
-        </Router>
+        </Scene>
+      </Scene>
+    )
+    return (
+        <Router scenes={scenes}/>
     );
   }
 }
