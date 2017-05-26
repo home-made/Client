@@ -27,6 +27,10 @@ export default class NavBar extends Component {
     Actions.checkout({type:ActionConst.RESET});
     setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
   }
+  edit() {
+    Actions.edit({type:ActionConst.RESET});
+    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
+  }
 
   render() {
     return (
@@ -67,6 +71,22 @@ export default class NavBar extends Component {
           <ListItem avatar onPress={this.checkout}>
             <Body>
               <Text>Checkout</Text>
+            </Body>
+            <Right>
+              <Text note></Text>
+            </Right>
+          </ListItem>
+          <ListItem avatar onPress={this.edit}>
+            <Body>
+              <Text>Edit Profile</Text>
+            </Body>
+            <Right>
+              <Text note></Text>
+            </Right>
+          </ListItem>
+          <ListItem avatar>
+            <Body>
+              <Text>Logout</Text>
             </Body>
             <Right>
               <Text note></Text>
