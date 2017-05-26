@@ -22,15 +22,14 @@ class App extends Component {
     this.fetchChefs = this.fetchChefs.bind(this);
     this.setChef = this.setChef.bind(this);
     this.getChef = this.getChef.bind(this);
+    this.fetchCart=this.fetchCart.bind(this);
+    this.setCart=this.setCart.bind(this)
   }
 
   setChef(chef) {
-    console.log("INSIDE SET CHEF", chef);
-    axios.get(`http://localhost:3000/chef/${chef.authId}`).then( res => {      console.log("HI");
+    axios.get(`http://localhost:3000/chef/${chef.authId}`).then( res =>
       this.setState({user: res.data}, () => {
-        Actions.profile();
-      })
-    }).catch((err) => console.log('Get chef err: ', err))
+        Actions.profile();}));
   }
     
 
@@ -41,13 +40,17 @@ class App extends Component {
   }
 
   setCuisineType(genre) {
+    
     this.setState({cuisineType: genre}, () => {
       let url = `http://localhost:3000/chef/style/${this.state.cuisineType}`;
       axios
         .get(url)
         .then(res => this.setState({chefs: res.data}, () => {
           if(res.data.length > 0) {
-            Actions.chefList();            
+                            Actions.chefList({type:ActionConst.RESET});
+
+                console.log('yurr')
+            
           }
         }))
         .catch(err => {
@@ -59,25 +62,32 @@ class App extends Component {
   fetchChefs() {
     return this.state.chefs;
   }
+  setCart(cart){
+    this.setState({checkout: cart})
+  }
+  fetchCart() {
+    return this.state.checkout;
+  }
 
   render() {
-    return (
-        <Router>
-          <Scene key="root">
-            <Scene key='homepage' component={HomePage} direction='vertical' style={styles.navbar} initial />
-            <Scene key="drawer" type={ActionConst.RESET} component={NavigationDrawer} open={false} >
-              <Scene key="main" initial>
-                <Scene key="cuisines" component={Cuisines} title="Cuisines" setCuisineType={this.setCuisineType} />
-                <Scene key="chefList" component={ChefList} title="Chefs" fetchChefs={this.fetchChefs} setChef={this.setChef} />
-                <Scene key="profile"  chef={this.state.user} component={Profile}  getChef={this.getChef} />
-                <Scene key="chefMap"  component={ChefMap} />
-                <Scene key="checkout" component={Checkout} /> 
-                <Scene key="edit" component={EditProfile} /> 
-              </Scene>
-            </Scene>
+    const scenes = Actions.create(
+      <Scene key="root">
+        <Scene key='homepage' component={HomePage} direction='vertical' style={styles.navbar} initial />
+        <Scene key="drawer" type={ActionConst.RESET} component={NavigationDrawer} open={false} >
+          <Scene key="main" initial>
+            <Scene key="cuisines" component={Cuisines} title="Cuisines" setCuisineType={this.setCuisineType} />
+            <Scene key="chefList" component={ChefList} title="Chefs" fetchChefs={this.fetchChefs} setChef={this.setChef} />
+            <Scene key="profile"  setCart={this.setCart}chef={this.state.user} component={Profile}  getChef={this.getChef} />
+            <Scene key="chefMap"  component={ChefMap} />
+            <Scene key="checkout" component={Checkout} fetchCart={this.fetchCart}/> 
+            <Scene key="edit" component={EditProfile} /> 
 
           </Scene>
-        </Router>
+        </Scene>
+      </Scene>
+    )
+    return (
+        <Router scenes={scenes}/>
     );
   }
 }
@@ -97,4 +107,3 @@ const styles = StyleSheet.create({
 });
 
 export default App;
-
