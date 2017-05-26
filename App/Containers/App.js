@@ -21,6 +21,8 @@ class App extends Component {
     this.fetchChefs = this.fetchChefs.bind(this);
     this.setChef = this.setChef.bind(this);
     this.getChef = this.getChef.bind(this);
+    this.fetchCart=this.fetchCart.bind(this);
+    this.setCart=this.setCart.bind(this)
   }
 
   setChef(chef) {
@@ -59,17 +61,24 @@ class App extends Component {
   fetchChefs() {
     return this.state.chefs;
   }
+  setCart(cart){
+    this.setState({checkout: cart})
+  }
+  fetchCart() {
+    return this.state.checkout;
+  }
 
   render() {
     const scenes = Actions.create(
       <Scene key="root">
+        <Scene key='homepage' component={HomePage} direction='vertical' style={styles.navbar} initial />
         <Scene key="drawer" type={ActionConst.RESET} component={NavigationDrawer} open={false} >
           <Scene key="main" initial>
             <Scene key="cuisines" component={Cuisines} title="Cuisines" setCuisineType={this.setCuisineType} />
             <Scene key="chefList" component={ChefList} title="Chefs" fetchChefs={this.fetchChefs} setChef={this.setChef} />
-            <Scene key="profile"  chef={this.state.user} component={Profile}  getChef={this.getChef} />
+            <Scene key="profile"  setCart={this.setCart}chef={this.state.user} component={Profile}  getChef={this.getChef} />
             <Scene key="chefMap"  component={ChefMap} />
-            <Scene key="checkout" component={Checkout} /> 
+            <Scene key="checkout" component={Checkout} fetchCart={this.fetchCart}/> 
           </Scene>
         </Scene>
       </Scene>
@@ -96,4 +105,3 @@ const styles = StyleSheet.create({
 
 export default App;
 
-            // <Scene key='homepage' component={HomePage} direction='vertical' style={styles.navbar} initial />

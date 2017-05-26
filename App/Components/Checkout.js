@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View,AsyncStorage } from 'react-native';
 import axios from 'axios';
 import { Container, Content, List, Header, Text, Button } from 'native-base';
 import CheckOutItem from './CheckOutItem.js';
@@ -126,41 +126,20 @@ export default class Checkout extends Component {
 
     componentDidMount(){
       var context = this;
+      let cart = this.props.fetchCart()
+      let dishItems ={}
+      let chefDishes ={}
+      this.setState(cart)
+      cart.data.map(dish => {
+        dishItems[dish._id] = {
+          amount: 0,
+          cashDonation: dish.cashDonation
+        }
+      });
 
-      // "location": { "geo_lat": 33.9210313, "geo_lng":  -118.4183891 }
-      axios.get('http://localhost:3000/chef?geo_lat=33.9210313&geo_lng=-118.4183891')
-        .then(response => {
-          var chefId = response.data[0].authId;
-
-          axios.get(`http://localhost:3000/chef/${chefId}`)
-            .then(response => {
-              var chefDishes = response.data[1];
-              var dishItems = {};
-
-              console.log("the chefDishes are ", chefDishes);
-              
-              chefDishes.map(dish => {
-                dishItems[dish._id] = {
-                  amount: 0,
-                  cashDonation: dish.cashDonation
-                }
-              });
-
-              context.setState({
-                data: chefDishes,
-                chefId: chefId,
-                dishCounter: dishItems
-              });    
-            })
-            .catch(error => {
-              console.log("The error inside axios get /chef/:chefId inside checkout is ", error);
-            });
-
-        })
-        .catch(error => {
-            console.log('The error inside Checkout.js is ', error);
-        });
-
+      context.setState({
+        data: chefDishes,
+      });    
         
    }
 

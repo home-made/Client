@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, AsyncStorage } from "react-native";
 import {
   Container,
   Text,
@@ -10,6 +10,7 @@ import {
   Body,
   Button
 } from "native-base";
+import {Actions,ActionConst} from 'react-native-router-flux'
 import { Grid, Row, Col } from "react-native-easy-grid";
 import DishView from "./DishView";
 import Review from "./Review";
@@ -21,6 +22,7 @@ export default class Profile extends Component {
     this.handleReviewsPress = this.handleReviewsPress.bind(this);
     this.handleMenuPress = this.handleMenuPress.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
+    this.handleCheckout = this.handleCheckout.bind(this);
   }
 
   componentWillMount() {
@@ -57,6 +59,18 @@ export default class Profile extends Component {
     cart = this.state.cart;
     cart.push(e);
     this.setState({ cart: cart }, console.log(this.state.cart));
+  }
+  handleCheckout(){
+    this.setState({checkout: {
+        data: this.state.cart,
+        chefId: this.state.chef[0].authId,
+        customerId: AsyncStorage.profile.userId,
+      }},() =>{ 
+        console.log(this.state.checkout);
+        this.props.setCart(this.state.checkout)
+         Actions.checkout({type:ActionConst.RESET});
+      
+    })
   }
   render() {
     return (
@@ -98,11 +112,21 @@ export default class Profile extends Component {
           </Row>
 
           {this.state.menu
-            ? this.state.chef[1].map(dish => {
+            ? this.state.chef[1].map((dish, idx) => {
+                if(idx === this.state.chef[1].length -1){
+                  return (
+                    <View>
+                      <DishView dish={dish} addToCart={this.handleAddToCart} />
+                      <Button onPress={() => this.handleCheckout()}><Text> Checkout </Text></Button>
+                    </View>
+                  );
+                }
+                else{
                 return (
-                  <DishView dish={dish} addToCart={this.handleAddToCart} />
-                );
-              })
+                    <DishView dish={dish} addToCart={this.handleAddToCart} />
+                  );
+                }
+              }) 
             : <Text />}
 
           {this.state.reviews

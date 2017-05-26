@@ -7,6 +7,7 @@ export default class DishView extends Component {
     super(props);
   }
   render() {
+    console.log(this.props)
     return (
       <View style={styles.container}>
         <Image
@@ -20,7 +21,7 @@ export default class DishView extends Component {
         />
         <Text> {this.props.dish.name}</Text>
         <Text> ${this.props.dish.cashDonation}</Text>
-        <Button onPress={() => this.props.addToCart(this.props.dish._id)}>
+        <Button onPress={() => this.props.addToCart(this.props.dish)}>
           <Text>Add to cart</Text>
         </Button>
 
