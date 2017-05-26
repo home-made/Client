@@ -9,6 +9,7 @@ import ChefMap from "../Components/ChefMap";
 import ChefList from "../Components/ChefList";
 import Profile from "../Components/Profile";
 import Checkout from "../Components/Checkout";
+import EditProfile from "../Components/EditProfile";
 
 import axios from "axios";
 // const cstore = store();
@@ -24,9 +25,12 @@ class App extends Component {
   }
 
   setChef(chef) {
-    axios.get(`http://localhost:3000/chef/${chef.authId}`).then( res =>
+    console.log("INSIDE SET CHEF", chef);
+    axios.get(`http://localhost:3000/chef/${chef.authId}`).then( res => {      console.log("HI");
       this.setState({user: res.data}, () => {
-        Actions.profile();}));
+        Actions.profile();
+      })
+    }).catch((err) => console.log('Get chef err: ', err))
   }
     
 
@@ -60,7 +64,7 @@ class App extends Component {
     return (
         <Router>
           <Scene key="root">
-
+            <Scene key='homepage' component={HomePage} direction='vertical' style={styles.navbar} initial />
             <Scene key="drawer" type={ActionConst.RESET} component={NavigationDrawer} open={false} >
               <Scene key="main" initial>
                 <Scene key="cuisines" component={Cuisines} title="Cuisines" setCuisineType={this.setCuisineType} />
@@ -68,6 +72,7 @@ class App extends Component {
                 <Scene key="profile"  chef={this.state.user} component={Profile}  getChef={this.getChef} />
                 <Scene key="chefMap"  component={ChefMap} />
                 <Scene key="checkout" component={Checkout} /> 
+                <Scene key="edit" component={EditProfile} /> 
               </Scene>
             </Scene>
 
@@ -93,4 +98,3 @@ const styles = StyleSheet.create({
 
 export default App;
 
-            // <Scene key='homepage' component={HomePage} direction='vertical' style={styles.navbar} initial />
