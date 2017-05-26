@@ -49,6 +49,7 @@ export default class HomePage extends Component {
       if (err) {
         console.log(err);
       } else {
+        axios.get()
         token = JSON.stringify(token);
         profile = JSON.stringify(profile);
         async function setStorage() {
