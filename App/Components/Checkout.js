@@ -93,6 +93,7 @@ export default class Checkout extends Component {
       */
 
       
+      
       var chefId = "7564fjasdif"; //Luke Skywalker 
       var customerId = "axncmufid745"; //Darth Vader
       var cashTotal = this.state.cashTotal;
@@ -137,31 +138,9 @@ export default class Checkout extends Component {
          dishCounter: dishItems
     })
 
-
-    // var chefDishes = response.data[1];
-    // var dishItems = {};
-
-    // console.log("the chefDishes are ", chefDishes);
-    
-    // chefDishes.map(dish => {
-    //   dishItems[dish._id] = {
-    //     amount: 0,
-    //     cashDonation: dish.cashDonation
-    //   }
-    // });
-
-    // context.setState({
-    //   data: chefDishes,
-    //   chefId: chefId,
-    //   dishCounter: dishItems
-    // });    
-        
-    console.log('compont did mont end')
-
    }
 
     render() {
-      console.log('render start')
       console.log("the state is ", this.state);
       if (!this.state.data) {
         return( 
