@@ -13,6 +13,7 @@ import ClickedProfile from "../Components/ClickedProfile";
 
 import Checkout from "../Components/Checkout";
 import EditProfile from "../Components/EditProfile";
+import ChefForm from '../Containers/ChefForm';
 
 import axios from "axios";
 // const cstore = store();
@@ -88,6 +89,7 @@ class App extends Component {
             <Scene key="chefMap"  component={ChefMap} />
             <Scene key="checkout" component={Checkout} fetchCart={this.fetchCart}/> 
             <Scene key="edit" component={EditProfile} /> 
+            <Scene key="chefform" component={ChefForm} /> 
           </Scene>
         </Scene>
       </Scene>

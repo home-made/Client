@@ -34,6 +34,11 @@ export default class NavBar extends Component {
     setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
   }
 
+  chefform() {
+    Actions.chefform({type:ActionConst.RESET});
+    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
+  }
+
   logout() {
     Actions.homepage({type:ActionConst.RESET});
     async function clearStorage() {
@@ -96,6 +101,14 @@ export default class NavBar extends Component {
           <ListItem avatar onPress={this.edit}>
             <Body>
               <Text>Edit Profile</Text>
+            </Body>
+            <Right>
+              <Text note></Text>
+            </Right>
+          </ListItem>
+          <ListItem avatar onPress={this.chefform}>
+            <Body>
+              <Text>Be A Chef!</Text>
             </Body>
             <Right>
               <Text note></Text>
