@@ -1,12 +1,34 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {StyleSheet, Text, Container,View,Card} from "react-native";
+import { Grid, Row, Col } from "react-native-easy-grid";
+import {Thumbnail, ListItem,Left,Body,Right} from 'native-base'
 
 export default class Review extends Component {
+  constructor(props){
+    super()
+  }
   render() {
+    console.log(this.props.review)
+      /*<Row style={{ justifyContent: "center", alignItems: "center" }}>
+          <Left>
+            <Thumbnail source={{ uri:this.props.review.user.profileUrl}} />
+                      <Text> {this.props.review.user.firstName}: </Text>
+
+          </Left>
+          
+        </Row>*/
     return (
-      <View style={styles.container}>
-        <Text> Review.js </Text>
-      </View>
+
+      <ListItem avatar>
+        <Left>
+            <Thumbnail source={{ uri:this.props.review.user.profileUrl}} />
+        </Left>
+        <Body>
+            <Text>{this.props.review.user.firstName}</Text>
+            <Text note> {this.props.review.userText}</Text>
+        </Body>
+
+    </ListItem>
     );
   }
 }
