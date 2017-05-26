@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, AsyncStorage } from "react-native";
 import { Container, Content, List, ListItem, Thumbnail, Text, Body, Left, Right } from 'native-base';
 import { Actions, ActionConst } from 'react-native-router-flux';
 
@@ -23,10 +23,32 @@ export default class NavBar extends Component {
     Actions.chefMap({type:ActionConst.RESET});
     setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
   }
+
   checkout() {
     Actions.checkout({type:ActionConst.RESET});
     setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
   }
+
+  alphabet() {
+    Actions.alphabet({type:ActionConst.RESET});
+    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
+  }
+  
+  logout() {
+    Actions.homepage({type:ActionConst.RESET});
+    async function clearStorage() {
+      try {
+        await AsyncStorage.multiRemove(['profile', 'token', 'isAuthenticated'], () => {
+          console.log('Storage cleared!');
+        })
+      } catch (err) {
+        console.log('Error clearing storage: ', err);
+      }
+    }
+    clearStorage();
+    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
+  }
+
 
   render() {
     return (
@@ -70,6 +92,30 @@ export default class NavBar extends Component {
             </Body>
             <Right>
               <Text note></Text>
+            </Right>
+          </ListItem>
+          <ListItem avatar onPress={this.checkout}>
+            <Body>
+              <Text>Checkout</Text>
+            </Body>
+            <Right>
+              <Text note></Text>
+            </Right>
+          </ListItem>
+          <ListItem avatar onPress={this.alphabet}>
+            <Body>
+              <Text>Alphabet</Text>
+            </Body>
+            <Right>
+              <Text note>ABC</Text>
+            </Right>
+          </ListItem>
+          <ListItem avatar onPress={this.logout}>
+            <Body>
+              <Text>로그 아웃</Text>
+            </Body>
+            <Right>
+              <Text note>ㅋㅋ</Text>
             </Right>
           </ListItem>
         </Content>
