@@ -82,7 +82,7 @@ export default class ChefMap extends Component {
 
     //Note: amended route to retrieve all the chefs
     //Filter axios data to only display chefs
-    axios.get('http://localhost:3000/chef')
+    axios.get('http://localhost:3000/chefTest')
       .then( (response) => {
         console.log("got the chefs", response);
         var filteredChefs = response.data.filter((chef) => {
