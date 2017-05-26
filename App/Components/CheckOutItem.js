@@ -32,6 +32,7 @@ export default class CheckOutItem extends Component {
     }
 
     render(){
+      console.log('dishcounter',this.dishCounter)
       return (
         <ListItem>
           <Thumbnail square size={80} source={{uri: this.uri}} />
