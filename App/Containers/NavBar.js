@@ -28,11 +28,6 @@ export default class NavBar extends Component {
     Actions.checkout({type:ActionConst.RESET});
     setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
   }
-
-  alphabet() {
-    Actions.alphabet({type:ActionConst.RESET});
-    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
-  }
   
   logout() {
     Actions.homepage({type:ActionConst.RESET});
@@ -92,22 +87,6 @@ export default class NavBar extends Component {
             </Body>
             <Right>
               <Text note></Text>
-            </Right>
-          </ListItem>
-          <ListItem avatar onPress={this.checkout}>
-            <Body>
-              <Text>Checkout</Text>
-            </Body>
-            <Right>
-              <Text note></Text>
-            </Right>
-          </ListItem>
-          <ListItem avatar onPress={this.alphabet}>
-            <Body>
-              <Text>Alphabet</Text>
-            </Body>
-            <Right>
-              <Text note>ABC</Text>
             </Right>
           </ListItem>
           <ListItem avatar onPress={this.logout}>
