@@ -1,4 +1,6 @@
 var axios = require('axios');
+var geopoint = require('geopoint'); 
+
 
 import React, { Component } from 'react';
 import {
@@ -59,12 +61,22 @@ export default class ChefMap extends Component {
 
         console.log("the region is ", region)
 
+        var userGeo = new geopoint(position.coords.latitude, position.coords.longitude);
+        var boundingBox = userGeo.boundingCoordinates(20);
+
+        console.log('the userGeo is ', userGeo);
+        console.log('boundingBox is ', boundingBox);
+
+        
+
       
         this.setState({region});
       },
       (error) => alert(JSON.stringify(error)),
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     );
+
+    
 
 
     this.watchID = navigator.geolocation.watchPosition((position) => {
