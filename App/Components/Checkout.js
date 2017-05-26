@@ -14,11 +14,7 @@ export default class Checkout extends Component {
     constructor(props){
       super(props);
       this.state = {
-        data: [],
-        chefId: '',
-        customerId: '',
-        dishCounter: {},
-        cashTotal: 0
+
       }
       this.incrementDishCount = this.incrementDishCount.bind(this);
       this.decrementDishCount = this.decrementDishCount.bind(this);
@@ -125,25 +121,47 @@ export default class Checkout extends Component {
        hooked together properly. */
 
     componentDidMount(){
-      var context = this;
+     console.log('compont did mont start')
       let cart = this.props.fetchCart()
       let dishItems ={}
       let chefDishes ={}
-      this.setState(cart)
       cart.data.map(dish => {
         dishItems[dish._id] = {
           amount: 0,
           cashDonation: dish.cashDonation
         }
       });
+      console.log(cart)
+      this.setState(cart)
+      this.setState({
+         dishCounter: dishItems
+    })
 
-      context.setState({
-        data: chefDishes,
-      });    
+
+    // var chefDishes = response.data[1];
+    // var dishItems = {};
+
+    // console.log("the chefDishes are ", chefDishes);
+    
+    // chefDishes.map(dish => {
+    //   dishItems[dish._id] = {
+    //     amount: 0,
+    //     cashDonation: dish.cashDonation
+    //   }
+    // });
+
+    // context.setState({
+    //   data: chefDishes,
+    //   chefId: chefId,
+    //   dishCounter: dishItems
+    // });    
         
+    console.log('compont did mont end')
+
    }
 
     render() {
+      console.log('render start')
       console.log("the state is ", this.state);
       if (!this.state.data) {
         return( 
