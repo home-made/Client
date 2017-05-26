@@ -84,6 +84,14 @@ export default class NavBar extends Component {
               <Text note></Text>
             </Right>
           </ListItem>
+           <ListItem avatar onPress={() => Actions.orders()}>
+            <Body>
+              <Text>Orders</Text>
+            </Body>
+            <Right>
+              <Text note></Text>
+            </Right>
+          </ListItem>
           <ListItem avatar>
             <Body>
               <Text>Logout</Text>

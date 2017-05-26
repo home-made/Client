@@ -22,16 +22,19 @@ export default class ChefList extends Component {
             style={{ marginTop: 60 }}
             dataArray={chefs}
             renderRow={chef => (
-              <ListItem onPress={() => {this.props.setChef(chef)}}>
+              <ListItem
+                onPress={() => {
+                  this.props.setChef(chef);
+                }}
+              >
                 <Image
                   style={{ width: 70, height: 70 }}
                   source={{
                     uri: chef.profileUrl
                   }}
                 />
-                <Text style={{ marginLeft: 10}}>{`${chef.firstName}
-${chef.status}`
-                }</Text>
+                <Text style={{ marginLeft: 10 }}>{`${chef.firstName}
+${chef.status}`}</Text>
               </ListItem>
             )}
           />

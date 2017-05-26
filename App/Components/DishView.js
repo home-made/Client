@@ -7,7 +7,7 @@ export default class DishView extends Component {
     super(props);
   }
   render() {
-    console.log(this.props)
+    console.log(this.props);
     return (
       <View style={styles.container}>
         <Image
