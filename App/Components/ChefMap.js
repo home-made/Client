@@ -19,6 +19,12 @@ const LONGITUDE = -118.3930801;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
+      // region: {
+      //   latitude: LATITUDE,
+      //   longitude: LONGITUDE,
+      //   latitudeDelta: LATITUDE_DELTA,
+      //   longitudeDelta: LONGITUDE_DELTA,
+      // },
 
 
 export default class ChefMap extends Component {
@@ -27,12 +33,8 @@ export default class ChefMap extends Component {
     super(props);
 
     this.state = {
-      region: {
-        latitude: LATITUDE,
-        longitude: LONGITUDE,
-        latitudeDelta: LATITUDE_DELTA,
-        longitudeDelta: LONGITUDE_DELTA,
-      },
+
+      initialRegion: null,
 
       //coords must be specified in following format:
       //{latlng: {latitude: 33.9210313, longitude: -118.4183891}, title: "Kagura Japanese"}
@@ -45,9 +47,46 @@ export default class ChefMap extends Component {
   onRegionChange(region) {
     this.setState({ region });
   }
+  /*
+  the initialRegion is  {"coords":{"speed":-1,"longitude":-122.406417,"latitude":37.785834,"accuracy":5,"heading":-1,"altitude":0,"altitudeAccuracy":-1},"timestamp":1495761178624.973}
+  */
 
   componentDidMount() {
-    
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        //var initialRegion = JSON.stringify(position);
+
+        console.log("the unstringified position is ", position);
+
+        //const LATITUDE_DELTA = 0.0922;
+        //const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+
+        var initialRegion = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          latitudeDelta: LATITUDE_DELTA,
+          longitudeDelta: LONGITUDE_DELTA,
+        }; 
+
+        console.log("the initialRegion is ", initialRegion)
+
+      
+        this.setState({initialRegion});
+      },
+      (error) => alert(JSON.stringify(error)),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    );
+    this.watchID = navigator.geolocation.watchPosition((position) => {
+      var lastPosition = JSON.stringify(position);
+      this.setState({lastPosition});
+    });
+
+
+
+    /*
+
+    //Note: amended route to retrieve all the chefs
     axios.get('http://localhost:3000/chef')
       .then( (response) => {
         console.log("got the chefs", response);
@@ -62,6 +101,7 @@ export default class ChefMap extends Component {
       .catch( (error) => {
        console.log(error);
       });
+   */
 
 
   }
@@ -72,9 +112,9 @@ export default class ChefMap extends Component {
 
         <View style={styles.container}>
           <MapView
-            showsUserLocation
+            showsUserLocation={true}
             style={styles.map}
-            initialRegion={this.state.region}
+            initialRegion={this.state.initialRegion}
           >
             {this.state.data.map((marker, idx)=>{
               return <MapView.Marker
