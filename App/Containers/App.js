@@ -8,9 +8,6 @@ import Cuisines from "../Components/Cuisines";
 import ChefMap from "../Components/ChefMap";
 import ChefList from "../Components/ChefList";
 import Profile from "../Components/Profile";
-
-import ClickedProfile from "../Components/ClickedProfile";
-
 import Checkout from "../Components/Checkout";
 import EditProfile from "../Components/EditProfile";
 
@@ -81,10 +78,9 @@ class App extends Component {
             <Scene key="cuisines" component={Cuisines} title="Cuisines" setCuisineType={this.setCuisineType} />
             <Scene key="chefList" component={ChefList} title="Chefs" fetchChefs={this.fetchChefs} setChef={this.setChef} />
             <Scene key="profile"  setCart={this.setCart}chef={this.state.user} component={Profile}  getChef={this.getChef} />
-            
-            <Scene key="clickedprofile" component={ClickedProfile}  />
-            
-            <Scene key="chefMap"  component={ChefMap} />
+                      
+            <Scene key="chefMap" getClickedProfile={this.setChef}  component={ChefMap} />
+
             <Scene key="checkout" component={Checkout} fetchCart={this.fetchCart}/> 
             <Scene key="edit" component={EditProfile} /> 
           </Scene>

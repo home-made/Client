@@ -135,7 +135,7 @@ export default class ChefMap extends Component {
               {console.log("the user is " + name + " and coords are " + coords)}
               
               return <MapView.Marker
-                onPress={()=> Actions.clickedprofile(chef.authId)}
+                onPress={()=> this.props.getClickedProfile(chef)}
                 key={name}
                 coordinate={coords.latlng}
                 title={name}
