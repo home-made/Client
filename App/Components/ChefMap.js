@@ -57,34 +57,53 @@ export default class ChefMap extends Component {
       (position) => {
         //var initialRegion = JSON.stringify(position);
 
+
         console.log("the unstringified position is ", position);
 
         //const LATITUDE_DELTA = 0.0922;
         //const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-        var initialRegion = {
+        var region = {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
           latitudeDelta: LATITUDE_DELTA,
           longitudeDelta: LONGITUDE_DELTA,
         }; 
 
-        console.log("the initialRegion is ", initialRegion)
+        console.log("the region is ", region)
+
+
+/*
+      const ASPECT_RATIO = width / height;
+      const LATITUDE = 33.9760019;
+      const LONGITUDE = -118.3930801;
+      const LATITUDE_DELTA = 0.0922;
+      const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+
+      var region = {
+        latitude: LATITUDE,
+        longitude: LONGITUDE,
+        latitudeDelta: LATITUDE_DELTA,
+        longitudeDelta: LONGITUDE_DELTA,
+      };
+
+*/
+
 
       
-        this.setState({initialRegion});
+        this.setState({initialRegion: region});
       },
       (error) => alert(JSON.stringify(error)),
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     );
-    this.watchID = navigator.geolocation.watchPosition((position) => {
-      var lastPosition = JSON.stringify(position);
-      this.setState({lastPosition});
-    });
+    // this.watchID = navigator.geolocation.watchPosition((position) => {
+    //   var lastPosition = JSON.stringify(position);
+    //   this.setState({lastPosition});
+    // });
 
 
 
-    /*
+  
 
     //Note: amended route to retrieve all the chefs
     axios.get('http://localhost:3000/chef')
@@ -101,7 +120,7 @@ export default class ChefMap extends Component {
       .catch( (error) => {
        console.log(error);
       });
-   */
+  
 
 
   }
@@ -114,7 +133,7 @@ export default class ChefMap extends Component {
           <MapView
             showsUserLocation={true}
             style={styles.map}
-            initialRegion={this.state.initialRegion}
+            region={this.state.initialRegion}
           >
             {this.state.data.map((marker, idx)=>{
               return <MapView.Marker
