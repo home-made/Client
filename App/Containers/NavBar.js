@@ -29,6 +29,11 @@ export default class NavBar extends Component {
     setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
   }
   
+  edit() {
+    Actions.edit({type:ActionConst.RESET});
+    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
+  }
+
   logout() {
     Actions.homepage({type:ActionConst.RESET});
     async function clearStorage() {
@@ -43,7 +48,6 @@ export default class NavBar extends Component {
     clearStorage();
     setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
   }
-
 
   render() {
     return (
@@ -89,12 +93,20 @@ export default class NavBar extends Component {
               <Text note></Text>
             </Right>
           </ListItem>
-          <ListItem avatar onPress={this.logout}>
+          <ListItem avatar onPress={this.edit}>
             <Body>
-              <Text>로그 아웃</Text>
+              <Text>Edit Profile</Text>
             </Body>
             <Right>
-              <Text note>ㅋㅋ</Text>
+              <Text note></Text>
+            </Right>
+          </ListItem>
+          <ListItem avatar onPress={this.logout}>
+            <Body>
+              <Text>Log Out</Text>
+            </Body>
+            <Right>
+              <Text note>LO</Text>
             </Right>
           </ListItem>
         </Content>
