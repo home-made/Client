@@ -116,7 +116,6 @@ class App extends Component {
             />
             <Scene key="edit" component={EditProfile} />
             <Scene key="orders" component={OrderView} />
-
           </Scene>
         </Scene>
       </Scene>
