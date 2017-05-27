@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { View, StyleSheet, AsyncStorage } from "react-native";
-import { Container, Content, List, ListItem, Thumbnail, Text, Body, Left, Right } from 'native-base';
+import { Image, View, StyleSheet, AsyncStorage } from "react-native";
+import { Container, Content, List, ListItem, Thumbnail, Text, Body, Left, Right, Icon } from 'native-base';
 import { Actions, ActionConst } from 'react-native-router-flux';
 
 export default class NavBar extends Component {
@@ -10,22 +10,12 @@ export default class NavBar extends Component {
     setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
   }
 
-  chefList() {
-    Actions.chefList({type:ActionConst.RESET});
-    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
-  }
-
   profile() {
     Actions.profile({type:ActionConst.RESET});
     setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
   }
   chefMap() {
     Actions.chefMap({type:ActionConst.RESET});
-    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
-  }
-
-  checkout() {
-    Actions.checkout({type:ActionConst.RESET});
     setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
   }
   
@@ -55,72 +45,77 @@ export default class NavBar extends Component {
   }
 
   render() {
+    const styles = {
+      content: {
+        marginTop: 22,
+        justifyContent: 'center',
+        alignItems: 'center'
+      },
+      backgroundImage: {
+        position: 'absolute',
+        resizeMode: 'cover'
+      },
+      entries: {
+        fontSize: 22
+      }
+    }
     return (
-      <Container style={styles.actionButtonIcon}>
-        <Content style={{ marginTop: 20 }}>
-          <ListItem avatar onPress={this.cuisines}>
+      <Container style={{}}>
+
+        <Image source={require('./img/turquoise-top-gradient-background.jpg')} style={styles.backgroundImage} />
+
+        <View style={{ flex: .2, justifyContent: 'center', flexDirection: 'column' }}>
+          <Text style={{ textAlign: 'center', fontSize: 25 }}>HOMEMADE BITCHES</Text>
+        </View>
+
+        <Content>
+          <ListItem icon onPress={this.cuisines} style={styles.content}>
+            <Left>
+              <Icon name='ios-pizza' />
+            </Left>
             <Body>
-                <Text>Cuisines</Text>
+                <Text style={styles.entries}>Cuisines</Text>
             </Body>
-            <Right>
-              <Text note>🍕</Text>
-            </Right>
           </ListItem>
-          <ListItem avatar onPress={this.chefList}>
+          <ListItem icon onPress={this.profile} style={styles.content}>
+            <Left>
+              <Icon name='ios-contact' />
+            </Left>
             <Body>
-              <Text>List of Chefs</Text>
+              <Text style={styles.entries}>Profile</Text>
             </Body>
-            <Right>
-              <Text note></Text>
-            </Right>
           </ListItem>
-          <ListItem avatar onPress={this.profile}>
+          <ListItem icon onPress={this.chefMap} style={styles.content}>
+            <Left>
+              <Icon name='ios-map' />
+            </Left>
             <Body>
-              <Text>Profile</Text>
+              <Text style={styles.entries}>Map</Text>
             </Body>
-            <Right>
-              <Text note></Text>
-            </Right>
           </ListItem>
-          <ListItem avatar onPress={this.chefMap}>
+          <ListItem icon onPress={this.edit} style={styles.content}>
+            <Left>
+              <Icon name='ios-create' />
+            </Left>
             <Body>
-              <Text>Map</Text>
+              <Text style={styles.entries}>Edit Profile</Text>
             </Body>
-            <Right>
-              <Text note></Text>
-            </Right>
           </ListItem>
-          <ListItem avatar onPress={this.checkout}>
+          <ListItem icon onPress={this.chefform} style={styles.content}>
+            <Left>
+              <Icon name='ios-star' />
+            </Left>
             <Body>
-              <Text>Checkout</Text>
+              <Text style={styles.entries}>Be A Chef!</Text>
             </Body>
-            <Right>
-              <Text note></Text>
-            </Right>
           </ListItem>
-          <ListItem avatar onPress={this.edit}>
+          <ListItem icon onPress={this.logout} style={styles.content}>
+            <Left>
+              <Icon name='ios-exit' />
+            </Left>
             <Body>
-              <Text>Edit Profile</Text>
+              <Text style={styles.entries}>Log Out</Text>
             </Body>
-            <Right>
-              <Text note></Text>
-            </Right>
-          </ListItem>
-          <ListItem avatar onPress={this.chefform}>
-            <Body>
-              <Text>Be A Chef!</Text>
-            </Body>
-            <Right>
-              <Text note></Text>
-            </Right>
-          </ListItem>
-          <ListItem avatar onPress={this.logout}>
-            <Body>
-              <Text>Log Out</Text>
-            </Body>
-            <Right>
-              <Text note>LO</Text>
-            </Right>
           </ListItem>
         </Content>
       </Container>
@@ -130,8 +125,11 @@ export default class NavBar extends Component {
 
 const styles = StyleSheet.create({
   actionButtonIcon: {
-    fontSize: 20,
-    height: 22,
+    fontSize: 30,
+    height: 1000,
     color: "white"
+  },
+  content: {
+    marginTop: 30
   }
 });
