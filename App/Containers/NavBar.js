@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, AsyncStorage } from "react-native";
 import { Container, Content, List, ListItem, Thumbnail, Text, Body, Left, Right } from 'native-base';
 import { Actions, ActionConst } from 'react-native-router-flux';
 
@@ -23,16 +23,33 @@ export default class NavBar extends Component {
     Actions.chefMap({type:ActionConst.RESET});
     setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
   }
+
   checkout() {
     Actions.checkout({type:ActionConst.RESET});
     setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
   }
+  
   edit() {
     Actions.edit({type:ActionConst.RESET});
     setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
   }
   orders() {
     Actions.orders({type:ActionConst.RESET});
+    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
+  }
+
+  logout() {
+    Actions.homepage({type:ActionConst.RESET});
+    async function clearStorage() {
+      try {
+        await AsyncStorage.multiRemove(['profile', 'token', 'isAuthenticated'], () => {
+          console.log('Storage cleared!');
+        })
+      } catch (err) {
+        console.log('Error clearing storage: ', err);
+      }
+    }
+    clearStorage();
     setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
   }
 
@@ -96,12 +113,14 @@ export default class NavBar extends Component {
               <Text note></Text>
             </Right>
           </ListItem>
-          <ListItem avatar>
+
+          <ListItem avatar onPress={this.logout}>
+
             <Body>
-              <Text>Logout</Text>
+              <Text>Log Out</Text>
             </Body>
             <Right>
-              <Text note></Text>
+              <Text note>LO</Text>
             </Right>
           </ListItem>
         </Content>

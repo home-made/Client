@@ -28,14 +28,10 @@ class App extends Component {
   }
 
   setChef(chef) {
-    console.log("About to set the chef on App to ", chef, "About to make axios call");
-    axios.get(`http://localhost:3000/chef/${chef.authId}`).then(res => {
-      console.log("axios call successful, response is: ", res.data);
-      this.setState({ user: res.data }, () => {
-        console.log("On app, chef is", this.state.user, " About to switch to their profile");
-        Actions.profile();
-      })
-    });
+    axios.get(`http://localhost:3000/chef/${chef.authId}`).then( res => {
+      this.setState({user: res.data}, () => {
+        Actions.profile();});
+    })
   }
 
   getChef() {
@@ -44,7 +40,8 @@ class App extends Component {
   }
 
   setCuisineType(genre) {
-    this.setState({ cuisineType: genre }, () => {
+    console.log(genre);
+    this.setState({cuisineType: genre}, () => {
       let url = `http://localhost:3000/chef/style/${this.state.cuisineType}`;
       axios
         .get(url)

@@ -59,22 +59,34 @@ export default class Profile extends Component {
     cart.push(e);
     this.setState({ cart: cart }, console.log("CART IS", this.state.cart));
   }
-  handleCheckout() {
-    this.setState(
-      {
-        checkout: {
+
+  handleCheckout(){
+    let customerId;
+    async function checkStorage() {
+      try {
+        const data = await AsyncStorage.getItem('profile');
+        if (data !== null && data !== undefined) {
+          console.log('async data: ', data);
+          customerId = JSON.parse(data).userId;
+        }
+      } catch (err) {
+        console.log('Error getting data: ', err);
+      }
+    }
+    checkStorage()
+      .then(() => {
+        this.setState({checkout: {
           data: this.state.cart,
           chefId: this.state.chef[0].authId,
-          customerId: AsyncStorage.profile.userId
-        }
-      },
-      () => {
-        console.log(this.state.checkout);
-        this.props.setCart(this.state.checkout);
-        Actions.checkout({ type: ActionConst.RESET });
-      }
-    );
+          customerId: customerId,
+        }},() =>{ 
+          console.log(this.state.checkout);
+          this.props.setCart(this.state.checkout)
+          Actions.checkout({type:ActionConst.RESET});
+        })
+      });
   }
+
   render() {
     return (
       <Container style={{ marginTop: 60 }}>
