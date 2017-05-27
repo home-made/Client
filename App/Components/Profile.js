@@ -10,7 +10,7 @@ import {
   Body,
   Button
 } from "native-base";
-import {Actions,ActionConst} from 'react-native-router-flux'
+import { Actions, ActionConst } from "react-native-router-flux";
 import { Grid, Row, Col } from "react-native-easy-grid";
 import DishView from "./DishView";
 import Review from "./Review";
@@ -27,7 +27,6 @@ export default class Profile extends Component {
 
   componentWillMount() {
     let chef = this.props.getChef();
-    console.log("IN PROFILE CHEF IS", chef);
     this.setState({ chef: this.props.getChef(), cart: [] }, () => {
       let reviews = this.state.chef[0].chefReviews.map(curr => {
         return {
@@ -60,18 +59,34 @@ export default class Profile extends Component {
     cart.push(e);
     this.setState({ cart: cart }, console.log(this.state.cart));
   }
+
   handleCheckout(){
-    this.setState({checkout: {
-        data: this.state.cart,
-        chefId: this.state.chef[0].authId,
-        customerId: AsyncStorage.profile.userId,
-      }},() =>{ 
-        console.log(this.state.checkout);
-        this.props.setCart(this.state.checkout)
-         Actions.checkout({type:ActionConst.RESET});
-      
-    })
+    let customerId;
+    async function checkStorage() {
+      try {
+        const data = await AsyncStorage.getItem('profile');
+        if (data !== null && data !== undefined) {
+          console.log('async data: ', data);
+          customerId = JSON.parse(data).userId;
+        }
+      } catch (err) {
+        console.log('Error getting data: ', err);
+      }
+    }
+    checkStorage()
+      .then(() => {
+        this.setState({checkout: {
+          data: this.state.cart,
+          chefId: this.state.chef[0].authId,
+          customerId: customerId,
+        }},() =>{ 
+          console.log(this.state.checkout);
+          this.props.setCart(this.state.checkout)
+          Actions.checkout({type:ActionConst.RESET});
+        })
+      });
   }
+
   render() {
     return (
       <Container style={{ marginTop: 60 }}>
@@ -113,20 +128,21 @@ export default class Profile extends Component {
 
           {this.state.menu
             ? this.state.chef[1].map((dish, idx) => {
-                if(idx === this.state.chef[1].length -1){
+                if (idx === this.state.chef[1].length - 1) {
                   return (
                     <View>
                       <DishView dish={dish} addToCart={this.handleAddToCart} />
-                      <Button onPress={() => this.handleCheckout()}><Text> Checkout </Text></Button>
+                      <Button onPress={() => this.handleCheckout()}>
+                        <Text> Checkout </Text>
+                      </Button>
                     </View>
                   );
-                }
-                else{
-                return (
+                } else {
+                  return (
                     <DishView dish={dish} addToCart={this.handleAddToCart} />
                   );
                 }
-              }) 
+              })
             : <Text />}
 
           {this.state.reviews
