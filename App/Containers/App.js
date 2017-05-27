@@ -10,8 +10,8 @@ import ChefList from "../Components/ChefList";
 import Profile from "../Components/Profile";
 import Checkout from "../Components/Checkout";
 import EditProfile from "../Components/EditProfile";
-import OrderView from "../Components/OrderView";
-
+import OrderPanel from "../Components/OrderPanel";
+import OrderView from "../Components/OrderView"
 import axios from "axios";
 // const cstore = store();
 
@@ -49,8 +49,6 @@ class App extends Component {
           this.setState({ chefs: res.data }, () => {
             if (res.data.length > 0) {
               Actions.chefList({ type: ActionConst.RESET });
-
-              console.log("yurr");
             }
           })
         )
@@ -115,7 +113,9 @@ class App extends Component {
               fetchCart={this.fetchCart}
             />
             <Scene key="edit" component={EditProfile} />
-            <Scene key="orders" component={OrderView} />
+            <Scene key="orders" component={OrderPanel} />
+            <Scene key="orderView" component={OrderView} title="Order" />
+
           </Scene>
         </Scene>
       </Scene>
