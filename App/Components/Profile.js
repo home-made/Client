@@ -57,7 +57,7 @@ export default class Profile extends Component {
     var cart = [];
     cart = this.state.cart;
     cart.push(e);
-    this.setState({ cart: cart }, console.log(this.state.cart));
+    this.setState({ cart: cart }, console.log("CART IS", this.state.cart));
   }
   handleCheckout() {
     this.setState(
@@ -120,9 +120,9 @@ export default class Profile extends Component {
                   return (
                     <View>
                       <DishView dish={dish} addToCart={this.handleAddToCart} />
-                      <Button onPress={() => this.handleCheckout()}>
+                      {this.state.cart.length > 0 ? (<Button onPress={() => this.handleCheckout()}>
                         <Text> Checkout </Text>
-                      </Button>
+                      </Button>) : (<Text></Text>)}
                     </View>
                   );
                 } else {

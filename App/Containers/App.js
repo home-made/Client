@@ -10,8 +10,8 @@ import ChefList from "../Components/ChefList";
 import Profile from "../Components/Profile";
 import Checkout from "../Components/Checkout";
 import EditProfile from "../Components/EditProfile";
-import OrderView from "../Components/OrderView";
-
+import OrderPanel from "../Components/OrderPanel";
+import OrderView from "../Components/OrderView"
 import axios from "axios";
 // const cstore = store();
 
@@ -28,11 +28,14 @@ class App extends Component {
   }
 
   setChef(chef) {
-    axios.get(`http://localhost:3000/chef/${chef.authId}`).then(res =>
+    console.log("About to set the chef on App to ", chef, "About to make axios call");
+    axios.get(`http://localhost:3000/chef/${chef.authId}`).then(res => {
+      console.log("axios call successful, response is: ", res.data);
       this.setState({ user: res.data }, () => {
+        console.log("On app, chef is", this.state.user, " About to switch to their profile");
         Actions.profile();
       })
-    );
+    });
   }
 
   getChef() {
@@ -49,8 +52,6 @@ class App extends Component {
           this.setState({ chefs: res.data }, () => {
             if (res.data.length > 0) {
               Actions.chefList({ type: ActionConst.RESET });
-
-              console.log("yurr");
             }
           })
         )
@@ -115,7 +116,8 @@ class App extends Component {
               fetchCart={this.fetchCart}
             />
             <Scene key="edit" component={EditProfile} />
-            <Scene key="orders" component={OrderView} />
+            <Scene key="orders" component={OrderPanel} />
+            <Scene key="orderView" component={OrderView} title="Order" />
 
           </Scene>
         </Scene>

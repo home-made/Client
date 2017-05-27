@@ -31,6 +31,10 @@ export default class NavBar extends Component {
     Actions.edit({type:ActionConst.RESET});
     setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
   }
+  orders() {
+    Actions.orders({type:ActionConst.RESET});
+    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
+  }
 
   render() {
     return (
@@ -84,7 +88,7 @@ export default class NavBar extends Component {
               <Text note></Text>
             </Right>
           </ListItem>
-           <ListItem avatar onPress={() => Actions.orders()}>
+           <ListItem avatar onPress={this.orders}>
             <Body>
               <Text>Orders</Text>
             </Body>

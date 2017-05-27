@@ -21,6 +21,10 @@ export default class Checkout extends Component {
     this.submitOrder = this.submitOrder.bind(this);
   }
 
+  componentWillMount() {
+    this.calculateTotal();
+  }
+
   incrementDishCount(key) {
     var newDishCounter = this.state.dishCounter;
     var newCount = newDishCounter[key].amount;
@@ -50,12 +54,23 @@ export default class Checkout extends Component {
   }
 
   deleteDish(key) {
+    var total = this.state.cashTotal;
+    var subtract;
     var newData = this.state.data.filter(dish => {
       return dish._id !== key;
     });
 
+      var newDishCounter = this.state.dishCounter;
+      console.log("NEW DISH COUNTER", newDishCounter);
+      subtract = newDishCounter[key].amount * newDishCounter[key].cashDonation;
+      delete newDishCounter[key];
+      console.log("NEW DISHCOUNTER AFTER DELETE", newDishCounter);
+      this.setState({dishCounter: newDishCounter});
+      total -= subtract;
+
     this.setState({
-      data: newData
+      data: newData,
+      cashTotal: total
     });
   }
 
@@ -123,9 +138,10 @@ export default class Checkout extends Component {
     cart.data.map(dish => {
       dishItems[dish._id] = {
         dish: dish,
-        amount: 0,
+        amount: 1,
         cashDonation: dish.cashDonation
       };
+      this.state.cashTotal += dish.cashDonation;
     });
     console.log("CART IS", cart);
     console.log("dishItems IS", dishItems);
