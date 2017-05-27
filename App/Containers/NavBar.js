@@ -24,13 +24,12 @@ export default class NavBar extends Component {
     setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
   }
 
-  checkout() {
-    Actions.checkout({type:ActionConst.RESET});
-    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
-  }
-  
   edit() {
     Actions.edit({type:ActionConst.RESET});
+    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
+  }
+  dishcreate() {
+    Actions.dishcreate({type:ActionConst.RESET});
     setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
   }
 
@@ -85,9 +84,9 @@ export default class NavBar extends Component {
               <Text note></Text>
             </Right>
           </ListItem>
-          <ListItem avatar onPress={this.checkout}>
+          <ListItem avatar onPress={this.dishcreate}>
             <Body>
-              <Text>Checkout</Text>
+              <Text>Create Dish</Text>
             </Body>
             <Right>
               <Text note></Text>

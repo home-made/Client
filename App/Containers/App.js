@@ -10,11 +10,25 @@ import ChefList from "../Components/ChefList";
 import Profile from "../Components/Profile";
 import Checkout from "../Components/Checkout";
 import EditProfile from "../Components/EditProfile";
+import UploadImageDish from "../Components/UploadImageDish";
+import DishCreate from "../Components/DishCreate";
 import OrderView from "../Components/OrderView";
+import DishConfirm from "../Components/DishConfirm";
+import SocketIO from "socket.io-client";
 
 import axios from "axios";
 // const cstore = store();
 
+// var socketConfig = { path: '/socket'};
+var socket = new SocketIO("localhost:3000");
+
+socket.connect();
+socket.on("connect", () => {
+  socket.on("fresh", message => {
+    console.log(message);
+    socket.emit("message", "right back you");
+  });
+});
 class App extends Component {
   constructor() {
     super();
@@ -28,10 +42,11 @@ class App extends Component {
   }
 
   setChef(chef) {
-    axios.get(`http://localhost:3000/chef/${chef.authId}`).then( res => {
-      this.setState({user: res.data}, () => {
-        Actions.profile();});
-    })
+    axios.get(`http://localhost:3000/chef/${chef.authId}`).then(res => {
+      this.setState({ user: res.data }, () => {
+        Actions.profile();
+      });
+    });
   }
 
   getChef() {
@@ -41,7 +56,7 @@ class App extends Component {
 
   setCuisineType(genre) {
     console.log(genre);
-    this.setState({cuisineType: genre}, () => {
+    this.setState({ cuisineType: genre }, () => {
       let url = `http://localhost:3000/chef/style/${this.state.cuisineType}`;
       axios
         .get(url)
@@ -107,7 +122,13 @@ class App extends Component {
               component={Profile}
               getChef={this.getChef}
             />
-
+            <Scene key="dishcreate" component={DishCreate} />
+            <Scene key="dishconfirm" component={DishConfirm} />
+            <Scene
+              key="uploaddishimage"
+              component={UploadImageDish}
+              title="Upload Dish"
+            />
             <Scene key="chefMap" component={ChefMap} />
             <Scene
               key="checkout"

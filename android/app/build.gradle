@@ -126,6 +126,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-s3')
     compile project(':react-native-maps')
     compile project(':react-native-lock')
     compile project(':react-native-image-picker')

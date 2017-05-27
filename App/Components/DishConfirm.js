@@ -12,7 +12,7 @@ import {
 } from "native-base";
 const axios = require("react-native-axios");
 
-export default class DishView extends Component {
+export default class DishConfirm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,44 +46,7 @@ export default class DishView extends Component {
     return (
       <Container>
         <Content>
-          <Form style={{ marginTop: 60 }}>
-            <Item>
-              <Input
-                placeholder="Dish Name"
-                onChangeText={dishText => this.setState({ dishText: dishText })}
-                value={this.state.dishText}
-              />
-            </Item>
-            <Item>
-              <Input
-                placeholder="Description"
-                onChangeText={dishDescriptionText =>
-                  this.setState({ dishDescriptionText })}
-                value={this.state.dishDescriptionText}
-              />
-            </Item>
-            <Item>
-              <Input
-                placeholder="Cash Donation $"
-                keyboardType={"number-pad"}
-                onChangeText={donationNumber =>
-                  this.setState({ donationNumber })}
-                value={this.state.donationNumber}
-              />
-            </Item>
-            <Item>
-              <Input
-                placeholder="Quantity Available"
-                keyboardType={"number-pad"}
-                onChangeText={quantityNumber =>
-                  this.setState({ quantityNumber })}
-                value={this.state.quantityNumber}
-              />
-            </Item>
-            <Button onPress={() => Actions.uploaddishimage()}>
-              <Text>Next </Text>
-            </Button>
-          </Form>
+          <Text> to get back </Text>
         </Content>
       </Container>
     );

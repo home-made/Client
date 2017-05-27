@@ -4,6 +4,7 @@ import { Actions } from "react-native-router-flux";
 
 import Promise from 'bluebird';
 import Auth0Lock from 'react-native-lock';
+import axios from 'axios'
 
 export default class HomePage extends Component {
   constructor(props) {
