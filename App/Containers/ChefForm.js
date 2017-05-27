@@ -1,19 +1,23 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { Component } from "react";
+import { View, StyleSheet } from "react-native";
+import { Container, Content, Button, Icon, Text } from 'native-base';
 
 export default class ChefForm extends Component {
   constructor(props) {
     super(props);
-    
-    this.state = {
-      
-    };
+
+    this.state = {};
   }
-  
+
   render() {
     return (
       <View style={styles.container}>
-        <Text>Be a Chef!</Text>
+        <View>
+          <Button transparent primary iconLeft large bordered>
+            <Icon name="beer" />
+            <Text>Become a Chef!</Text>
+          </Button>
+        </View>
       </View>
     );
   }
@@ -24,7 +28,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2c3e50',
-  },
+    backgroundColor: "#ffffff"
+  }
 });
-
