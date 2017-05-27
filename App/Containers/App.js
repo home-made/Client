@@ -12,9 +12,10 @@ import Checkout from "../Components/Checkout";
 import EditProfile from "../Components/EditProfile";
 import UploadImageDish from "../Components/UploadImageDish";
 import DishCreate from "../Components/DishCreate";
-import OrderView from "../Components/OrderView";
 import DishConfirm from "../Components/DishConfirm";
 import SocketIO from "socket.io-client";
+import OrderPanel from "../Components/OrderPanel";
+import OrderView from "../Components/OrderView"
 
 import axios from "axios";
 // const cstore = store();
@@ -64,8 +65,6 @@ class App extends Component {
           this.setState({ chefs: res.data }, () => {
             if (res.data.length > 0) {
               Actions.chefList({ type: ActionConst.RESET });
-
-              console.log("yurr");
             }
           })
         )
@@ -136,7 +135,8 @@ class App extends Component {
               fetchCart={this.fetchCart}
             />
             <Scene key="edit" component={EditProfile} />
-            <Scene key="orders" component={OrderView} />
+            <Scene key="orders" component={OrderPanel} />
+            <Scene key="orderView" component={OrderView} title="Order" />
 
           </Scene>
         </Scene>
