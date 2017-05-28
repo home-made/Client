@@ -106,7 +106,7 @@ class App extends Component {
               getChef={this.getChef}
             />
 
-            <Scene key="chefMap" component={ChefMap} />
+            <Scene key="chefMap" setChef={this.setChef} component={ChefMap} />
             <Scene
               key="checkout"
               component={Checkout}
