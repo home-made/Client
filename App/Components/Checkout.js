@@ -6,10 +6,26 @@ import CheckOutItem from "./CheckOutItem.js";
 
 export default class Checkout extends Component {
   /*
-      Will need the following for Checkout to work
-        -Array of dishes from a cook
-        -An object that keeps track of the count for each dish
-        -chefId?
+      State inside Checkout.js is 
+      cashTotal: 14
+      chefId: "facebook|"
+      customerId: "google-oauth2|"
+      data: [array of dish documents]
+      dishCounter: {obj}
+
+      where cashTotal is the total dollar amt calculated in the checkout
+
+
+
+      dishCounter obj has:
+      {dishKey: {
+        amount: 1
+        cashDonation:7}
+      }
+
+      where amount is the number of times 
+      the dish has been incremented
+
     */
   constructor(props) {
     super(props);
@@ -93,26 +109,14 @@ export default class Checkout extends Component {
 
   submitOrder() {
     console.log('clicked')
-    //will need the customerId && chefId to submit order to DB
-    //hardcoded info for demo purposes
 
-    /*
-      Note: I think we should set the state.dishCounter obj as
-      the cart property on an Order because that dishCounter obj
-      has the quantity per dish that was placed in an order. just 
-      not sure what the ID for a dish is in the DB.
-      */
-
-    var chefId = "7564fjasdif"; //Luke Skywalker
-    var customerId = "axncmufid745"; //Darth Vader
-    var cashTotal = this.state.cashTotal;
-
+    //where status: 0 means the order is pending approval
     var newOrder = {
-      chefId: chefId,
-      customerId: customerId,
+      chefId: this.state.chefId,
+      customerId: this.state.customerId,
       cart: this.state.dishCounter,
       status: 0,
-      cashTotal: cashTotal
+      cashTotal: this.state.cashTotal
     };
 
     axios
@@ -124,11 +128,6 @@ export default class Checkout extends Component {
         console.log("The error message inside checkout post is ", error);
       });
   }
-
-  /* code inside componentDidMount doesn't reflect actual 
-       workflow. performing axios requests to mimic functionality.
-       actual data will be retrieved once components are actually
-       hooked together properly. */
 
   componentDidMount() {
     console.log("compont did mont start");
@@ -150,30 +149,12 @@ export default class Checkout extends Component {
       dishCounter: dishItems
     });
 
-    // var chefDishes = response.data[1];
-    // var dishItems = {};
 
-    // console.log("the chefDishes are ", chefDishes);
-
-    // chefDishes.map(dish => {
-    //   dishItems[dish._id] = {
-    //     amount: 0,
-    //     cashDonation: dish.cashDonation
-    //   }
-    // });
-
-    // context.setState({
-    //   data: chefDishes,
-    //   chefId: chefId,
-    //   dishCounter: dishItems
-    // });
-
-    console.log("compont did mont end");
   }
 
   render() {
     console.log("render start");
-    console.log("the state is ", this.state);
+    console.log("the state inside the checkout is ", this.state);
     if (!this.state.data) {
       return (
         <Container>
@@ -213,30 +194,3 @@ export default class Checkout extends Component {
     }
   }
 }
-
-/*
-
-  I need to account for 
-
-  var OrderSchema = new Schema({
-    chefId: String,
-    customerId: String,
-    cart: [Number],
-    status: Number,
-    date: { type: Date, default: Date.now },
-    cashTotal: Number
-  });
-
-
-[
-          {url: "https://s3-media1.fl.yelpcdn.com/bphoto/EYXge_0jGM7RNgS2rsmVxw/o.jpg", title: "Shrimp, Napa & Pork Dumplings Photo"},
-          {url: "https://s3-media2.fl.yelpcdn.com/bphoto/iAPfeRggRDUJhaKJhL5ZHw/o.jpg", title: "Juicy Pork Dumplings"},
-          {url: "https://s3-media3.fl.yelpcdn.com/bphoto/483cLj4_WzDcnET0MRuv4g/o.jpg", title: "Garlic pea sprouts"},
-          {url: "https://s3-media3.fl.yelpcdn.com/bphoto/hJ-H82bNFdUJQvruDbwz-w/o.jpg", title: "Beef Chow Fun"},
-          {url: "https://s3-media3.fl.yelpcdn.com/bphoto/byMHqLIEmua_8RsRupPWhg/o.jpg", title: "Beef Wrap Close-Up"}
-        ]
-
-
-
-
-*/

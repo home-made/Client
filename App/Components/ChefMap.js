@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Dimensions, Text, View } from 'react-native';
+import { StyleSheet, Dimensions, Text, View, Linking } from 'react-native';
 import MapView from 'react-native-maps';
 import { Actions, Router, Scene, Modal } from "react-native-router-flux";
 import GetGeoLocation from '../utils/GetGeoLocation';
@@ -16,6 +16,19 @@ export default class ChefMap extends Component {
   }
 
   watchID: ?number = null;
+
+  giveDirections(chef) {
+    const rla = this.state.region.latitude;
+    const rlo = this.state.region.longitude;
+
+    const la = chef.location.geo_lat;
+    const lo = chef.location.geo_lng;
+
+    const url = `http://maps.apple.com/?saddr=${rla},${rlo}&daddr=${la},${lo}&dirflg=d`;
+
+    console.log(Linking.openURL(url));
+    return Linking.openURL(url);
+  }
 
   componentDidMount() {
     var context = this;
@@ -45,7 +58,8 @@ export default class ChefMap extends Component {
               var coords =  {latlng: {latitude: chef.location.geo_lat, longitude: chef.location.geo_lng}, title: name};
               
               return <MapView.Marker
-                onPress={()=> this.props.getClickedProfile(chef)}
+                //onPress={()=> this.props.setChef(chef)}
+                onPress={()=> this.giveDirections(chef)}
                 key={name}
                 coordinate={coords.latlng}
                 title={name}
