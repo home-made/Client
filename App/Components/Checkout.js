@@ -134,7 +134,7 @@ export default class Checkout extends Component {
       .post("http://localhost:3000/orders", newOrder)
       .then(function(response) {
         console.log("New order was submitted to the database, response is: ", response);
-        Actions.orders();
+        Actions.userOrders();
       })
       .catch(function(error) {
         console.log("The error message inside checkout post is ", error);
@@ -177,7 +177,7 @@ export default class Checkout extends Component {
       );
     } else {
       return (
-        <Container>
+        <Container >
           <Header><Text>Checkout</Text></Header>
           <Content>
             <List>
@@ -196,9 +196,13 @@ export default class Checkout extends Component {
               })}
             </List>
             <Header><Text>Total: ${this.state.cashTotal}</Text></Header>
-            <Button onPress={this.submitOrder} light>
+            <Container style={{ alignItems:"center"}}>
+              <Content>
+            <Button style={{marginTop: 10}} onPress={this.submitOrder} success>
               <Text>Submit Order</Text>
             </Button>
+            </Content>
+            </Container>
           </Content>
         </Container>
       );

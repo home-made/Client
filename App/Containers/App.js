@@ -13,7 +13,9 @@ import EditProfile from "../Components/EditProfile";
 import OrderPanel from "../Components/OrderPanel";
 import OrderView from "../Components/OrderView";
 import ChefPanel from "../Components/ChefPanel";
+import UserOrderPanel from "../Components/UserOrderPanel";
 import axios from "axios";
+
 // const cstore = store();
 
 class App extends Component {
@@ -26,6 +28,10 @@ class App extends Component {
     this.getChef = this.getChef.bind(this);
     this.fetchCart = this.fetchCart.bind(this);
     this.setCart = this.setCart.bind(this);
+  }
+
+  componentDidMount() {
+    console.log("APP MOUNTED");
   }
 
   setChef(chef) {
@@ -86,12 +92,15 @@ class App extends Component {
           open={false}
         >
           <Scene key="main" initial>
+
+
             <Scene
               key="cuisines"
               component={Cuisines}
               title="Cuisines"
               setCuisineType={this.setCuisineType}
             />
+            <Scene key="chefPanel" component={ChefPanel} title="Chef Panel" />
             <Scene
               key="chefList"
               component={ChefList}
@@ -117,7 +126,7 @@ class App extends Component {
             <Scene key="edit" component={EditProfile} />
             <Scene key="orders" component={OrderPanel} />
             <Scene key="orderView" component={OrderView} title="Order" />
-            <Scene key="chefPanel" component={ChefPanel} title="Chef Panel" />
+            <Scene key="userOrders" component={UserOrderPanel} title="Orders" />
 
           </Scene>
         </Scene>
