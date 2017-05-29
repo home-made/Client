@@ -53,6 +53,7 @@ export default class Profile extends Component {
   handleMenuPress() {
     this.setState({ reviews: false, menu: true }, console.log(this.state));
   }
+
   handleAddToCart(e) {
     var cart = [];
     cart = this.state.cart;
@@ -108,7 +109,8 @@ export default class Profile extends Component {
                       width: 120,
                       height: 120,
                       justifyContent: "center",
-                      alignItems: "center"
+                      alignItems: "center",
+                      borderRadius: 60
                     }}
                     source={{
                       uri: this.state.chef[0].profileUrl
@@ -132,9 +134,9 @@ export default class Profile extends Component {
                   return (
                     <View>
                       <DishView dish={dish} addToCart={this.handleAddToCart} />
-                      {this.state.cart.length > 0 ? (<Button onPress={() => this.handleCheckout()}>
+                      {this.state.cart.length > 0 ? (<Container style={{alignItems:"center"}}><Content><Button success onPress={() => this.handleCheckout()}>
                         <Text> Checkout </Text>
-                      </Button>) : (<Text></Text>)}
+                      </Button></Content></Container>) : (<Text></Text>)}
                     </View>
                   );
                 } else {

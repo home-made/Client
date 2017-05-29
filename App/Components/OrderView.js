@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, Container, Text } from "native-base";
 
-//Using StyleSheet.create doesn't work. Have to explicitly give styling
 
 export default class OrderView extends Component {
   render() {
