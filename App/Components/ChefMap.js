@@ -31,6 +31,7 @@ export default class ChefMap extends Component {
   }
 
   render() {
+    console.log("CHEF MAP PROPS ARE: ", this.props)
     return (
       <View style={{ flex: 1, marginTop: -40 }}>
 
@@ -45,7 +46,7 @@ export default class ChefMap extends Component {
               var coords =  {latlng: {latitude: chef.location.geo_lat, longitude: chef.location.geo_lng}, title: name};
               
               return <MapView.Marker
-                onPress={()=> this.props.getClickedProfile(chef)}
+                onPress={()=> this.props.setChef(chef)}
                 key={name}
                 coordinate={coords.latlng}
                 title={name}

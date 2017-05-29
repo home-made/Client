@@ -3,6 +3,7 @@ import { View, AsyncStorage } from "react-native";
 import axios from "axios";
 import { Container, Content, List, Header, Text, Button } from "native-base";
 import CheckOutItem from "./CheckOutItem.js";
+import { Actions } from "react-native-router-flux";
 
 export default class Checkout extends Component {
   /*
@@ -61,10 +62,8 @@ export default class Checkout extends Component {
     });
 
       var newDishCounter = this.state.dishCounter;
-      console.log("NEW DISH COUNTER", newDishCounter);
       subtract = newDishCounter[key].amount * newDishCounter[key].cashDonation;
       delete newDishCounter[key];
-      console.log("NEW DISHCOUNTER AFTER DELETE", newDishCounter);
       this.setState({dishCounter: newDishCounter});
       total -= subtract;
 
@@ -92,7 +91,7 @@ export default class Checkout extends Component {
   }
 
   submitOrder() {
-    console.log('clicked')
+    console.log('Submit order was clicked')
     //will need the customerId && chefId to submit order to DB
     //hardcoded info for demo purposes
 
@@ -118,7 +117,8 @@ export default class Checkout extends Component {
     axios
       .post("http://localhost:3000/orders", newOrder)
       .then(function(response) {
-        console.log("The success response inside checkout post is ", response);
+        console.log("New order was submitted to the database, response is: ", response);
+        Actions.orders();
       })
       .catch(function(error) {
         console.log("The error message inside checkout post is ", error);
@@ -167,8 +167,6 @@ export default class Checkout extends Component {
     //   chefId: chefId,
     //   dishCounter: dishItems
     // });
-
-    console.log("compont did mont end");
   }
 
   render() {

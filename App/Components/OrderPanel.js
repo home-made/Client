@@ -22,21 +22,21 @@ export default class OrderPanel extends Component {
   }
 
   componentWillMount() {
-    let authID = AsyncStorage.profile.userId;
-    console.log("http://localhost:3000/orders/0/" + authID);
-    // async function getAuthID() {
+    let authID;
 
-    //   try {
-    //     const data = await AsyncStorage.getItem('profile')
-    //       if (data !== null && data !== undefined) {
-    //         console.log('async data: ', data);
-    //         authID= data[0][1].;
-    //       }
-    //   } catch (err) {
-    //     console.log('Error getting data: ', err);
-    //   }
-    // }
-
+    async function getAuthID() {
+      try {
+        const data = await AsyncStorage.getItem("profile");
+        if (data !== null && data !== undefined) {
+          console.log("async data: ", data);
+          authID = data[0][1].userId;
+        }
+      } catch (err) {
+        console.log("Error getting data: ", err);
+      }
+    }
+    
+    
     axios.get("http://localhost:3000/orders/0/" + authID).then(pending => {
       this.setState({ pending: pending.data[0] }, () =>
         console.log("PENDING ORDERS ARE ", this.state.pending)
@@ -55,19 +55,17 @@ export default class OrderPanel extends Component {
   }
 
   render() {
-    console.log(this.state.pending, this.state.accepted, this.state.complete)
+    console.log(this.state.pending, this.state.accepted, this.state.complete);
     return (
       <Container>
         <Header hasTabs />
         <Tabs>
-          
-          
           <Tab heading={<TabHeading><Text>Pending</Text></TabHeading>}>
             <List
               style={{ marginTop: 10 }}
               dataArray={this.state.pending}
               renderRow={pOrder => (
-                <ListItem onPress={() =>  Actions.orderView(pOrder)}>
+                <ListItem onPress={() => Actions.orderView(pOrder)}>
                   <Text style={{ marginLeft: 10 }}>
                     Placed at: {pOrder.date.slice(11, 16)}{"\n"}
                     Cash total: ${pOrder.cashTotal}
@@ -80,14 +78,15 @@ export default class OrderPanel extends Component {
             <List
               style={{ marginTop: 10 }}
               dataArray={this.state.accepted}
-              renderRow={aOrder => { (
+              renderRow={aOrder => {
                 <ListItem onPress={() => Actions.orderView(aOrder)}>
                   <Text style={{ marginLeft: 10 }}>
                     Placed at: {aOrder.date.slice(11, 16)}{"\n"}
                     Cash total: ${aOrder.cashTotal}
                   </Text>
-                </ListItem>
-              ); this.render()}}
+                </ListItem>;
+                this.render();
+              }}
             />
           </Tab>
           <Tab heading={<TabHeading><Text>Complete</Text></TabHeading>}>
