@@ -19,7 +19,10 @@ class Upload extends Component {
   constructor() {
     super();
   }
- 
+   componentDidMount(){
+    //  console.log('dish is', this.props.fetchDish())
+    this.setState({dish:this.props.fetchDish()},() =>console.log(this.state.dish))
+  }
   
 
   takePicture() {

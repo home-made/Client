@@ -40,6 +40,8 @@ class App extends Component {
     this.getChef = this.getChef.bind(this);
     this.fetchCart = this.fetchCart.bind(this);
     this.setCart = this.setCart.bind(this);
+    this.setDishDetails =this.setDishDetails.bind(this);
+    this.fetchDishDetails = this.fetchDishDetails.bind(this);
   }
 
   setChef(chef) {
@@ -76,6 +78,14 @@ class App extends Component {
 
   fetchChefs() {
     return this.state.chefs;
+  }
+  fetchDishDetails() {
+    console.log('dish set',this.state.dish)
+    return this.state.dish;
+  }
+  setDishDetails(dish) {
+    console.log('dish set',dish)
+    this.setState({dish});
   }
   setCart(cart) {
     this.setState({ checkout: cart });
@@ -121,12 +131,14 @@ class App extends Component {
               component={Profile}
               getChef={this.getChef}
             />
-            <Scene key="dishcreate" component={DishCreate} />
-            <Scene key="dishconfirm" component={DishConfirm} />
+            <Scene key="dishcreate" component={DishCreate} setDish={this.setDishDetails} title="Create Dish"/>
+            <Scene key="dishconfirm" component={DishConfirm} fetchDish={this.fetchDishDetails}/>
             <Scene
               key="uploaddishimage"
               component={UploadImageDish}
               title="Upload Dish"
+              setDish={this.state.setDish}
+              fetchDish={this.fetchDishDetails}
             />
             <Scene key="chefMap" component={ChefMap} />
             <Scene

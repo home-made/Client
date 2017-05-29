@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, TextInput, View, Alert } from "react-native";
+import { StyleSheet, Image,TextInput, View, Alert } from "react-native";
 import { Actions } from "react-native-router-flux";
 import {
   Container,
@@ -8,20 +8,23 @@ import {
   Input,
   Item,
   Form,
-  Button
+  Button,
+  Left,
+  Header,
+  Icon,
+  Body,
+  Title,
+  Right
 } from "native-base";
 const axios = require("react-native-axios");
 
 export default class DishConfirm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      dishText: "",
-      donationNumber: "",
-      quantityNumber: "",
-      dishDescriptionText: ""
-    };
     this.onSubmit = this.onSubmit.bind(this);
+  }
+  componentDidMount(){
+    this.setState({dish:this.props.fetchDish()}),() =>console.log(this.state.dish)
   }
   onSubmit() {
     axios.post("http://localhost:3000/dish/add", {
@@ -44,9 +47,20 @@ export default class DishConfirm extends Component {
       this.setState({ dishText: "freshly" });
     };
     return (
-      <Container>
-        <Content>
-          <Text> to get back </Text>
+      <Container style={{marginTop: 80}}>
+        <Image source={{ uri:'https://homemadedishes.s3.amazonaws.com/uploads%2Fimage.jpg'}}  
+        style={{width: 200, height: 200}}
+          resizeMode={Image.resizeMode.center} />
+          <Body>
+            <Title>Hello</Title>
+            <Text>yrrrrrr</Text>
+          </Body>
+          <Right />
+
+        <Content padder>
+           <Button onPress={() => this.handleSubmit()}>
+              <Text>Next </Text>
+            </Button>
         </Content>
       </Container>
     );
