@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, Text } from "native-base";
 
-export default class OrderView extends Component {
+export default class UserOrderPanel extends Component {
+
   render() {
     console.log(this.props)
     return (
       <View style={styles.container}>
-        <Text>Order</Text>
-        {this.props.status === 0 ? (<Container><Button><Text>Decline</Text></Button> <Button><Text>Accept</Text></Button></Container>): <Text></Text>}
+       <Text>User order panel</Text>
       </View>
     );
   }
