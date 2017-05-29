@@ -22,7 +22,6 @@ export default class OrderPanel extends Component {
     this.returnRow = this.returnRow.bind(this);
   }
 
-<<<<<<< HEAD
   returnRow(data){
     return(
       <ListItem onPress={() => Actions.orderView(data)}>
@@ -35,8 +34,6 @@ export default class OrderPanel extends Component {
 
   }
 
-=======
->>>>>>> ae1a8235aa3295700fcd2820f8672701c8da2fa3
   componentWillMount() {
     let authID;
 
@@ -45,22 +42,14 @@ export default class OrderPanel extends Component {
         const data = await AsyncStorage.getItem("profile");
         if (data !== null && data !== undefined) {
           console.log("async data: ", data);
-<<<<<<< HEAD
-          //authID = data[0][1].userId;
-=======
           authID = data[0][1].userId;
->>>>>>> ae1a8235aa3295700fcd2820f8672701c8da2fa3
         }
       } catch (err) {
         console.log("Error getting data: ", err);
       }
     }
-<<<<<<< HEAD
-    authID = 'facebook|10209561963947713';
+  
     console.log("the authid inside orderPanel is ", authID)
-=======
-    
->>>>>>> ae1a8235aa3295700fcd2820f8672701c8da2fa3
     
     axios.get("http://localhost:3000/orders/0/" + authID).then(pending => {
       this.setState({ pending: pending.data[0] }, () =>

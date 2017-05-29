@@ -5,7 +5,6 @@ import { Button, Container, Text } from "native-base";
 //Using StyleSheet.create doesn't work. Have to explicitly give styling
 
 export default class OrderView extends Component {
-  //component
   render() {
     if (this.props.status === 0){
       return (
