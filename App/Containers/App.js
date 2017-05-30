@@ -10,8 +10,14 @@ import ChefList from "../Components/ChefList";
 import Profile from "../Components/Profile";
 import Checkout from "../Components/Checkout";
 import EditProfile from "../Components/EditProfile";
-import ChefForm from '../Containers/ChefForm';
+
+import UploadImageDish from "../Components/UploadImageDish";
+import DishCreate from "../Components/DishCreate";
+import DishConfirm from "../Components/DishConfirm";
+import SocketIO from "socket.io-client";
+
 import SignaturePage from '../Components/SignaturePage';
+
 import OrderPanel from "../Components/OrderPanel";
 import OrderView from "../Components/OrderView";
 import ChefPanel from "../Components/ChefPanel";
@@ -20,6 +26,16 @@ import axios from "axios";
 
 // const cstore = store();
 
+// var socketConfig = { path: '/socket'};
+var socket = new SocketIO("localhost:3000");
+
+socket.connect();
+socket.on("connect", () => {
+  socket.on("fresh", message => {
+    console.log(message);
+    socket.emit("message", "right back you");
+  });
+});
 class App extends Component {
   constructor() {
     super();
@@ -30,6 +46,13 @@ class App extends Component {
     this.getChef = this.getChef.bind(this);
     this.fetchCart = this.fetchCart.bind(this);
     this.setCart = this.setCart.bind(this);
+    this.setDishDetails =this.setDishDetails.bind(this);
+    this.fetchDishDetails = this.fetchDishDetails.bind(this);
+    this.getCuisineStyles = this.getCuisineStyles.bind(this)
+  }
+  //return array of styles
+  getCuisineStyles(){
+    return "All Cuisines,American,Barbecue,Burgers,Chinese,Indian,Italian,Japanese,Korean,Mediterranean,Mexican,Pizza,Sandwiches,Sushi,Thai,Vegetarian,Vietnamese,American,Ethiopian,Other".split(",");
   }
 
   componentDidMount() {
@@ -37,10 +60,11 @@ class App extends Component {
   }
 
   setChef(chef) {
-    axios.get(`http://localhost:3000/chef/${chef.authId}`).then( res => {
-      this.setState({user: res.data}, () => {
-        Actions.profile();});
-    })
+    axios.get(`http://localhost:3000/chef/${chef.authId}`).then(res => {
+      this.setState({ user: res.data }, () => {
+        Actions.profile();
+      });
+    });
   }
 
   getChef() {
@@ -49,7 +73,7 @@ class App extends Component {
 
   setCuisineType(genre) {
     console.log(genre);
-    this.setState({cuisineType: genre}, () => {
+    this.setState({ cuisineType: genre }, () => {
       let url = `http://localhost:3000/chef/style/${this.state.cuisineType}`;
       axios
         .get(url)
@@ -68,6 +92,13 @@ class App extends Component {
   fetchChefs() {
     console.log("the chefs inside fetchchefs are ", this.state.chefs)
     return this.state.chefs;
+  }
+  fetchDishDetails() {
+    console.log('dish set',this.state.dish)
+    return this.state.dish;
+  }
+  setDishDetails(dish) {
+    this.setState({dish},()=> console.log('dish set',this.state.dish));
   }
   setCart(cart) {
     this.setState({ checkout: cart });
@@ -98,6 +129,7 @@ class App extends Component {
               key="cuisines"
               component={Cuisines}
               title="Cuisines"
+              getStyles={this.getCuisineStyles}
               setCuisineType={this.setCuisineType}
             />
             <Scene key="chefPanel" component={ChefPanel} title="Chef Panel" />
@@ -115,7 +147,17 @@ class App extends Component {
               component={Profile}
               getChef={this.getChef}
             />
+            <Scene key="dishcreate" component={DishCreate} setDish={this.setDishDetails} getStyles={this.getCuisineStyles}
 
+title="Create Dish"/>
+            <Scene key="dishconfirm" component={DishConfirm} setDish={this.setDishDetails}  fetchDish={this.fetchDishDetails}/>
+            <Scene
+              key="uploaddishimage"
+              component={UploadImageDish}
+              title="Upload Dish"
+              setDish={this.setDishDetails}
+              fetchDish={this.fetchDishDetails}
+            />
             <Scene key="chefMap" component={ChefMap} setChef={this.setChef} />
 
             <Scene

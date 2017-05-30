@@ -46,6 +46,10 @@ export default class NavBar extends Component {
     setTimeout(() => Actions.refresh({ key: "drawer", open: false }), 0);
   }
 
+  dishcreate() {
+    Actions.dishcreate({type:ActionConst.RESET});
+  }
+
   orders() {
     let chefView;
     async function getChefViewBool() {
@@ -156,6 +160,12 @@ export default class NavBar extends Component {
             </Left>
             <Body>
               <Text style={styles.entries}>Map</Text>
+            </Body>
+          </ListItem>
+
+          <ListItem avatar onPress={this.dishcreate}>
+            <Body>
+              <Text>Create Dish</Text>
             </Body>
           </ListItem>
           <ListItem icon onPress={this.edit} style={styles.content}>
