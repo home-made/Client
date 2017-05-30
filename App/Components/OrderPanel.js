@@ -21,7 +21,10 @@ export default class OrderPanel extends Component {
     this.state = {};
   }
 
+
   componentWillMount() {
+    console.log("IN CHEF ORDER PANEL WILL MOUNT");
+
     let authID;
 
     async function getAuthID() {
@@ -35,7 +38,7 @@ export default class OrderPanel extends Component {
         console.log("Error getting data: ", err);
       }
     }
-    
+    getAuthID();
     
     axios.get("http://localhost:3000/orders/0/" + authID).then(pending => {
       this.setState({ pending: pending.data[0] }, () =>
