@@ -1,24 +1,24 @@
 import React, { Component } from "react";
 import { StyleSheet, View } from "react-native";
-import { Button, Text } from "native-base";
+import { Button, Container, Text } from "native-base";
+
 
 export default class OrderView extends Component {
   render() {
-    console.log(this.props)
-    return (
-      <View style={styles.container}>
-        <Text>Order</Text>
-        {this.props.status === 0 ? (<Container><Button><Text>Decline</Text></Button> <Button><Text>Accept</Text></Button></Container>): <Text></Text>}
-      </View>
-    );
+    if (this.props.status === 0){
+      return (
+        <Container style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#F5FCFF"}}>
+          <Button><Text>Decline</Text></Button> 
+          <Button><Text>Accept</Text></Button>
+        </Container>
+      )
+    } else {
+      return (
+        <Container style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#F5FCFF"}}>
+          <Text></Text>
+        </Container>
+      )
+    } 
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
-  }
-});

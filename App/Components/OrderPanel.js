@@ -19,6 +19,19 @@ export default class OrderPanel extends Component {
   constructor() {
     super();
     this.state = {};
+    this.returnRow = this.returnRow.bind(this);
+  }
+
+  returnRow(data){
+    return(
+      <ListItem onPress={() => Actions.orderView(data)}>
+        <Text style={{ marginLeft: 10 }}>
+          Placed at: {data.date.slice(11, 16)}{"\n"}
+          Cash total: ${data.cashTotal}
+        </Text>
+      </ListItem>
+    )
+
   }
 
 
@@ -39,6 +52,7 @@ export default class OrderPanel extends Component {
       }
     }
     getAuthID();
+
     
     axios.get("http://localhost:3000/orders/0/" + authID).then(pending => {
       this.setState({ pending: pending.data[0] }, () =>
@@ -58,54 +72,39 @@ export default class OrderPanel extends Component {
   }
 
   render() {
+    var pendingOrders = [];
+    var acceptedOrders = [];
+    var completeOrders = [];
     console.log(this.state.pending, this.state.accepted, this.state.complete);
     return (
       <Container>
         <Header hasTabs />
         <Tabs>
           <Tab heading={<TabHeading><Text>Pending</Text></TabHeading>}>
-            <List
-              style={{ marginTop: 10 }}
-              dataArray={this.state.pending}
-              renderRow={pOrder => (
-                <ListItem onPress={() => Actions.orderView(pOrder)}>
-                  <Text style={{ marginLeft: 10 }}>
-                    Placed at: {pOrder.date.slice(11, 16)}{"\n"}
-                    Cash total: ${pOrder.cashTotal}
-                  </Text>
-                </ListItem>
-              )}
-            />
+            {
+              !this.state.pending ? <Text></Text> : this.state.pending.forEach(item => pendingOrders.push(this.returnRow(item)))
+            }
+            <List style={{ marginTop: 10 }} dataArray={this.state.pending}>
+              {pendingOrders}
+            </List>
           </Tab>
-          <Tab heading={<TabHeading><Text>Confirmed</Text></TabHeading>}>
-            <List
-              style={{ marginTop: 10 }}
-              dataArray={this.state.accepted}
-              renderRow={aOrder => {
-                <ListItem onPress={() => Actions.orderView(aOrder)}>
-                  <Text style={{ marginLeft: 10 }}>
-                    Placed at: {aOrder.date.slice(11, 16)}{"\n"}
-                    Cash total: ${aOrder.cashTotal}
-                  </Text>
-                </ListItem>;
-                this.render();
-              }}
-            />
-          </Tab>
-          <Tab heading={<TabHeading><Text>Complete</Text></TabHeading>}>
 
-            <List
-              style={{ marginTop: 10 }}
-              dataArray={this.state.complete}
-              renderRow={cOrder => (
-                <ListItem onPress={() => Actions.orderView(cOrder)}>
-                  <Text style={{ marginLeft: 10 }}>
-                    Placed at: {cOrder.date.slice(11, 16)}{"\n"}
-                    Cash total: ${cOrder.cashTotal}
-                  </Text>
-                </ListItem>
-              )}
-            />
+          <Tab heading={<TabHeading><Text>Confirmed</Text></TabHeading>}>
+            {
+              !this.state.accepted ? <Text></Text> : this.state.accepted.forEach(item => acceptedOrders.push(this.returnRow(item)))
+            }
+            <List style={{ marginTop: 10 }} dataArray={this.state.accepted}>
+              {acceptedOrders}  
+            </List>
+          </Tab>
+
+          <Tab heading={<TabHeading><Text>Complete</Text></TabHeading>}>
+            {
+              !this.state.complete ? <Text></Text> : this.state.complete.forEach(item => completeOrders.push(this.returnRow(item)))
+            }
+            <List style={{ marginTop: 10 }} dataArray={this.state.complete}>
+              {completeOrders}
+            </List>
           </Tab>
         </Tabs>
       </Container>
