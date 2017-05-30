@@ -10,7 +10,9 @@ import {
   Form,
   Button,
   Label,
-  Picker
+  Picker,
+  CheckBox,
+  ListItem
 } from "native-base";
 const axios = require("react-native-axios");
 export default class DishView extends Component {
@@ -71,7 +73,7 @@ export default class DishView extends Component {
 
         }}>
         <Content >
-          <Form style={{ marginTop: 200 }}>
+          <Form style={{ marginTop: 100 }}>
             <Item>
               <Input
                 placeholder="Name"
@@ -139,6 +141,14 @@ export default class DishView extends Component {
 
                 }): {}}
             </Picker>
+            <ListItem>
+              <CheckBox checked={true} />
+              <Text>Daily Stand Up</Text>
+            </ListItem>
+            <ListItem>
+                <CheckBox checked={false} />
+                <Text>Discussion with Client</Text>
+            </ListItem>
             <Button style={{ marginTop: 70}} onPress={() => this.handleSubmit()}>
               <Text>Next </Text>
             </Button>
