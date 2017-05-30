@@ -15,6 +15,7 @@ import Promise from "bluebird";
 import Auth0Lock from "react-native-lock";
 import axios from "axios";
 
+
 export default class HomePage extends Component {
   constructor(props) {
     super(props);
@@ -33,6 +34,7 @@ export default class HomePage extends Component {
   }
 
   componentDidMount() {
+    console.log("HOME PAGE MOUNTED");
     this.checkStorage();
   }
 
@@ -95,6 +97,9 @@ export default class HomePage extends Component {
                 err =>
                   (err ? console.log("ERROR: ", err) : console.log("Info set!"))
               );
+              profile = JSON.parse(profile);
+              console.log("RIGHT BEFORE ACTIONS PROFILE IS", profile)
+              // App.render();
               Actions.drawer();
             } catch (err) {
               console.log(

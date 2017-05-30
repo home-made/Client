@@ -17,7 +17,9 @@ import SocketIO from "socket.io-client";
 import OrderPanel from "../Components/OrderPanel";
 import OrderView from "../Components/OrderView";
 import ChefPanel from "../Components/ChefPanel";
+import UserOrderPanel from "../Components/UserOrderPanel";
 import axios from "axios";
+
 // const cstore = store();
 
 // var socketConfig = { path: '/socket'};
@@ -48,6 +50,11 @@ class App extends Component {
   getCuisineStyles(){
     return "All Cuisines,American,Barbecue,Burgers,Chinese,Indian,Italian,Japanese,Korean,Mediterranean,Mexican,Pizza,Sandwiches,Sushi,Thai,Vegetarian,Vietnamese,American,Ethiopian,Other".split(",");
   }
+
+  componentDidMount() {
+    console.log("APP MOUNTED");
+  }
+
   setChef(chef) {
     axios.get(`http://localhost:3000/chef/${chef.authId}`).then(res => {
       this.setState({ user: res.data }, () => {
@@ -115,6 +122,8 @@ class App extends Component {
           open={false}
         >
           <Scene key="main" initial>
+
+
             <Scene
               key="cuisines"
               component={Cuisines}
@@ -122,6 +131,7 @@ class App extends Component {
               getStyles={this.getCuisineStyles}
               setCuisineType={this.setCuisineType}
             />
+            <Scene key="chefPanel" component={ChefPanel} title="Chef Panel" />
             <Scene
               key="chefList"
               component={ChefList}
@@ -157,7 +167,7 @@ title="Create Dish"/>
             <Scene key="edit" component={EditProfile} />
             <Scene key="orders" component={OrderPanel} />
             <Scene key="orderView" component={OrderView} title="Order" />
-            <Scene key="chefPanel" component={ChefPanel} title="Chef Panel" />
+            <Scene key="userOrders" component={UserOrderPanel} title="Orders" />
 
           </Scene>
         </Scene>

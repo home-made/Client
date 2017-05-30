@@ -39,7 +39,7 @@ class Upload extends Component {
       }
       
       let options = {
-        keyPrefix: "uploads/",
+        keyPrefix: `dish${this.state.dish.name}`,
         bucket: "homemadedishes",
         region: "us-east-1",
         accessKey: "AKIAJXAGIK4OW5YB7DHA",
@@ -78,7 +78,7 @@ class Upload extends Component {
           ref={cam => {
             this.camera = cam;
           }}
-          style={preview}
+          style={preview} 
           aspect={Camera.constants.Aspect.fill}
         >
           <Text style={capture} onPress={this.takePicture.bind(this)}>

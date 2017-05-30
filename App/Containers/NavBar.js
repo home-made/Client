@@ -1,76 +1,108 @@
 import React, { Component } from "react";
 import { View, StyleSheet, AsyncStorage } from "react-native";
-import { Container, Content, List, ListItem, Thumbnail, Text, Body, Left, Right } from 'native-base';
-import { Actions, ActionConst } from 'react-native-router-flux';
-import { Switch } from 'react-native-switch';
-
+import {
+  Container,
+  Content,
+  List,
+  ListItem,
+  Thumbnail,
+  Text,
+  Body,
+  Left,
+  Right
+} from "native-base";
+import { Actions, ActionConst } from "react-native-router-flux";
+import { Switch } from "react-native-switch";
 
 export default class NavBar extends Component {
-
   cuisines() {
-    Actions.cuisines({type:ActionConst.RESET});
-    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
+    Actions.cuisines({ type: ActionConst.RESET });
+    setTimeout(() => Actions.refresh({ key: "drawer", open: false }), 0);
   }
 
   chefList() {
-    Actions.chefList({type:ActionConst.RESET});
-    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
+    Actions.chefList({ type: ActionConst.RESET });
+    setTimeout(() => Actions.refresh({ key: "drawer", open: false }), 0);
   }
 
   profile() {
-    Actions.profile({type:ActionConst.RESET});
-    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
+    Actions.profile({ type: ActionConst.RESET });
+    setTimeout(() => Actions.refresh({ key: "drawer", open: false }), 0);
   }
   chefMap() {
-    Actions.chefMap({type:ActionConst.RESET});
-    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
+    Actions.chefMap({ type: ActionConst.RESET });
+    setTimeout(() => Actions.refresh({ key: "drawer", open: false }), 0);
+  }
+
+  checkout() {
+    Actions.checkout({ type: ActionConst.RESET });
+    setTimeout(() => Actions.refresh({ key: "drawer", open: false }), 0);
   }
 
   edit() {
-    Actions.edit({type:ActionConst.RESET});
-    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
+    Actions.edit({ type: ActionConst.RESET });
+    setTimeout(() => Actions.refresh({ key: "drawer", open: false }), 0);
   }
   dishcreate() {
     Actions.dishcreate({type:ActionConst.RESET});
   }
   orders() {
-    Actions.orders({type:ActionConst.RESET});
-    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
-  }
-
-  logout() {
-    Actions.homepage({type:ActionConst.RESET});
-    async function clearStorage() {
+    let chefView;
+    async function getChefViewBool() {
       try {
-        await AsyncStorage.multiRemove(['profile', 'token', 'isAuthenticated'], () => {
-          console.log('Storage cleared!');
-        })
-      } catch (err) {
-        console.log('Error clearing storage: ', err);
-      }
-    }
-    clearStorage();
-    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
-  }
-
-  async toggleChefMode() {
-      try {
-        const profile = await AsyncStorage.getItem("profile");
-
-        profile = JSON.parse(profile);
-        profile.chefView = !profile.chefView;
-        profile = JSON.stringify(profile);
-        console.log(profile);
-        if (profile !== null && profile !== undefined) {
-          await AsyncStorage.setItem("profile", profile);
-          const data = await AsyncStorage.getItem("profile");
-          console.log(JSON.parse(data).chefView);
+        const data = await AsyncStorage.getItem("profile");
+        if (data !== null && data !== undefined) {
+          data = JSON.parse(data);
+          chefView = data.chefView;
         }
       } catch (err) {
         console.log("Error getting data: ", err);
       }
+    }
+    getChefViewBool().then(() => {
+      console.log("chefView is", chefView)
+      if (chefView) {
+        Actions.orders({ type: ActionConst.RESET });
+      } else {
+        Actions.userOrders({ type: ActionConst.RESET });
+      }
+    });
+
+    setTimeout(() => Actions.refresh({ key: "drawer", open: false }), 0);
   }
 
+  logout() {
+    Actions.homepage({ type: ActionConst.RESET });
+    async function clearStorage() {
+      try {
+        await AsyncStorage.multiRemove(
+          ["profile", "token", "isAuthenticated"],
+          () => {
+            console.log("Storage cleared!");
+          }
+        );
+      } catch (err) {
+        console.log("Error clearing storage: ", err);
+      }
+    }
+    clearStorage();
+    setTimeout(() => Actions.refresh({ key: "drawer", open: false }), 0);
+  }
+
+  async toggleChefMode() {
+    try {
+      const profile = await AsyncStorage.getItem("profile");
+
+      profile = JSON.parse(profile);
+      profile.chefView = !profile.chefView;
+      profile = JSON.stringify(profile);
+      if (profile !== null && profile !== undefined) {
+        await AsyncStorage.setItem("profile", profile);
+      }
+    } catch (err) {
+      console.log("Error getting data: ", err);
+    }
+  }
 
   render() {
     return (
@@ -78,18 +110,10 @@ export default class NavBar extends Component {
         <Content style={{ marginTop: 20 }}>
           <ListItem avatar onPress={this.cuisines}>
             <Body>
-                <Text>Cuisines</Text>
+              <Text>Cuisines</Text>
             </Body>
             <Right>
               <Text note>🍕</Text>
-            </Right>
-          </ListItem>
-          <ListItem avatar onPress={this.chefList}>
-            <Body>
-              <Text>List of Chefs</Text>
-            </Body>
-            <Right>
-              <Text note></Text>
             </Right>
           </ListItem>
           <ListItem avatar onPress={this.profile}>
@@ -97,7 +121,7 @@ export default class NavBar extends Component {
               <Text>Profile</Text>
             </Body>
             <Right>
-              <Text note></Text>
+              <Text note />
             </Right>
           </ListItem>
           <ListItem avatar onPress={this.chefMap}>
@@ -105,7 +129,7 @@ export default class NavBar extends Component {
               <Text>Map</Text>
             </Body>
             <Right>
-              <Text note></Text>
+              <Text note />
             </Right>
           </ListItem>
           <ListItem avatar onPress={this.dishcreate}>
@@ -113,7 +137,7 @@ export default class NavBar extends Component {
               <Text>Create Dish</Text>
             </Body>
             <Right>
-              <Text note></Text>
+              <Text note />
             </Right>
           </ListItem>
           <ListItem avatar onPress={this.edit}>
@@ -121,18 +145,18 @@ export default class NavBar extends Component {
               <Text>Edit Profile</Text>
             </Body>
             <Right>
-              <Text note></Text>
+              <Text note />
             </Right>
           </ListItem>
-           <ListItem avatar onPress={this.orders}>
+          <ListItem avatar onPress={this.orders}>
             <Body>
               <Text>Orders</Text>
             </Body>
             <Right>
-              <Text note></Text>
+              <Text note />
             </Right>
           </ListItem>
-          
+
           <ListItem avatar onPress={this.logout}>
             <Body>
               <Text>Log Out</Text>
@@ -144,15 +168,15 @@ export default class NavBar extends Component {
           <ListItem avatar>
             <Body>
               <Text>Chef Mode</Text>
-              <Text></Text>
+              <Text />
               <Switch
                 value={true}
                 onValueChange={this.toggleChefMode}
                 disabled={false}
-                backgroundActive={'green'}
-                backgroundInactive={'gray'}
-                circleActiveColor={'white'}
-                circleInActiveColor={'white'}
+                backgroundActive={"green"}
+                backgroundInactive={"gray"}
+                circleActiveColor={"white"}
+                circleInActiveColor={"white"}
               />
             </Body>
           </ListItem>
