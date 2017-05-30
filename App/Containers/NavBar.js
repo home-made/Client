@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { View, StyleSheet, AsyncStorage } from "react-native";
 import { Container, Content, List, ListItem, Thumbnail, Text, Body, Left, Right } from 'native-base';
 import { Actions, ActionConst } from 'react-native-router-flux';
+import { Switch } from 'react-native-switch';
+
 
 export default class NavBar extends Component {
 
@@ -50,6 +52,25 @@ export default class NavBar extends Component {
     clearStorage();
     setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
   }
+
+  async toggleChefMode() {
+      try {
+        const profile = await AsyncStorage.getItem("profile");
+
+        profile = JSON.parse(profile);
+        profile.chefView = !profile.chefView;
+        profile = JSON.stringify(profile);
+        console.log(profile);
+        if (profile !== null && profile !== undefined) {
+          await AsyncStorage.setItem("profile", profile);
+          const data = await AsyncStorage.getItem("profile");
+          console.log(JSON.parse(data).chefView);
+        }
+      } catch (err) {
+        console.log("Error getting data: ", err);
+      }
+  }
+
 
   render() {
     return (
@@ -111,15 +132,29 @@ export default class NavBar extends Component {
               <Text note></Text>
             </Right>
           </ListItem>
-
+          
           <ListItem avatar onPress={this.logout}>
-
             <Body>
               <Text>Log Out</Text>
             </Body>
             <Right>
               <Text note>LO</Text>
             </Right>
+          </ListItem>
+          <ListItem avatar>
+            <Body>
+              <Text>Chef Mode</Text>
+              <Text></Text>
+              <Switch
+                value={true}
+                onValueChange={this.toggleChefMode}
+                disabled={false}
+                backgroundActive={'green'}
+                backgroundInactive={'gray'}
+                circleActiveColor={'white'}
+                circleInActiveColor={'white'}
+              />
+            </Body>
           </ListItem>
         </Content>
       </Container>

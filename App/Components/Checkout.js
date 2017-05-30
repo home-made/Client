@@ -3,13 +3,30 @@ import { View, AsyncStorage } from "react-native";
 import axios from "axios";
 import { Container, Content, List, Header, Text, Button } from "native-base";
 import CheckOutItem from "./CheckOutItem.js";
+import { Actions } from "react-native-router-flux";
 
 export default class Checkout extends Component {
   /*
-      Will need the following for Checkout to work
-        -Array of dishes from a cook
-        -An object that keeps track of the count for each dish
-        -chefId?
+      State inside Checkout.js is 
+      cashTotal: 14
+      chefId: "facebook|"
+      customerId: "google-oauth2|"
+      data: [array of dish documents]
+      dishCounter: {obj}
+
+      where cashTotal is the total dollar amt calculated in the checkout
+
+
+
+      dishCounter obj has:
+      {dishKey: {
+        amount: 1
+        cashDonation:7}
+      }
+
+      where amount is the number of times 
+      the dish has been incremented
+
     */
   constructor(props) {
     super(props);
@@ -61,10 +78,8 @@ export default class Checkout extends Component {
     });
 
       var newDishCounter = this.state.dishCounter;
-      console.log("NEW DISH COUNTER", newDishCounter);
       subtract = newDishCounter[key].amount * newDishCounter[key].cashDonation;
       delete newDishCounter[key];
-      console.log("NEW DISHCOUNTER AFTER DELETE", newDishCounter);
       this.setState({dishCounter: newDishCounter});
       total -= subtract;
 
@@ -92,7 +107,6 @@ export default class Checkout extends Component {
   }
 
   submitOrder() {
-    console.log('clicked')
     //will need the customerId && chefId to submit order to DB
     //hardcoded info for demo purposes
 
@@ -107,28 +121,25 @@ export default class Checkout extends Component {
     var customerId = "axncmufid745"; //Darth Vader
     var cashTotal = this.state.cashTotal;
 
+    //where status: 0 means the order is pending approval
     var newOrder = {
-      chefId: chefId,
-      customerId: customerId,
+      chefId: this.state.chefId,
+      customerId: this.state.customerId,
       cart: this.state.dishCounter,
       status: 0,
-      cashTotal: cashTotal
+      cashTotal: this.state.cashTotal
     };
 
     axios
       .post("http://localhost:3000/orders", newOrder)
       .then(function(response) {
-        console.log("The success response inside checkout post is ", response);
+        console.log("New order was submitted to the database, response is: ", response);
+        Actions.orders();
       })
       .catch(function(error) {
         console.log("The error message inside checkout post is ", error);
       });
   }
-
-  /* code inside componentDidMount doesn't reflect actual 
-       workflow. performing axios requests to mimic functionality.
-       actual data will be retrieved once components are actually
-       hooked together properly. */
 
   componentDidMount() {
     console.log("compont did mont start");
@@ -149,31 +160,12 @@ export default class Checkout extends Component {
     this.setState({
       dishCounter: dishItems
     });
-
-    // var chefDishes = response.data[1];
-    // var dishItems = {};
-
-    // console.log("the chefDishes are ", chefDishes);
-
-    // chefDishes.map(dish => {
-    //   dishItems[dish._id] = {
-    //     amount: 0,
-    //     cashDonation: dish.cashDonation
-    //   }
-    // });
-
-    // context.setState({
-    //   data: chefDishes,
-    //   chefId: chefId,
-    //   dishCounter: dishItems
-    // });
-
-    console.log("compont did mont end");
+    
   }
 
   render() {
     console.log("render start");
-    console.log("the state is ", this.state);
+    console.log("the state inside the checkout is ", this.state);
     if (!this.state.data) {
       return (
         <Container>
@@ -213,30 +205,3 @@ export default class Checkout extends Component {
     }
   }
 }
-
-/*
-
-  I need to account for 
-
-  var OrderSchema = new Schema({
-    chefId: String,
-    customerId: String,
-    cart: [Number],
-    status: Number,
-    date: { type: Date, default: Date.now },
-    cashTotal: Number
-  });
-
-
-[
-          {url: "https://s3-media1.fl.yelpcdn.com/bphoto/EYXge_0jGM7RNgS2rsmVxw/o.jpg", title: "Shrimp, Napa & Pork Dumplings Photo"},
-          {url: "https://s3-media2.fl.yelpcdn.com/bphoto/iAPfeRggRDUJhaKJhL5ZHw/o.jpg", title: "Juicy Pork Dumplings"},
-          {url: "https://s3-media3.fl.yelpcdn.com/bphoto/483cLj4_WzDcnET0MRuv4g/o.jpg", title: "Garlic pea sprouts"},
-          {url: "https://s3-media3.fl.yelpcdn.com/bphoto/hJ-H82bNFdUJQvruDbwz-w/o.jpg", title: "Beef Chow Fun"},
-          {url: "https://s3-media3.fl.yelpcdn.com/bphoto/byMHqLIEmua_8RsRupPWhg/o.jpg", title: "Beef Wrap Close-Up"}
-        ]
-
-
-
-
-*/

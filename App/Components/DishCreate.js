@@ -9,22 +9,30 @@ import {
   Item,
   Form,
   Button,
-  Label
+  Label,
+  Picker
 } from "native-base";
 const axios = require("react-native-axios");
 export default class DishView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      donation: 0,
-      quantity: 0,
-      description: ""
+        selectedItem: 'undefined',
+        selected1: 0,
+      dish:{
+        name: "",
+        donation: 0,
+        quantity: 0,
+        description: ""
+      }
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  componentWillMount(){
+    this.setState({genres:['Select a Cuisine Style'].concat(this.props.getStyles())})
+  }
   handleSubmit() {
-    console.log(this.state)
+    console.log(this.state.dish)
     // axios.post("http://localhost:3000/dish/add", {
     //   cuisineType: "Chinese",
     //   name: this.state.name,
@@ -38,8 +46,16 @@ export default class DishView extends Component {
     //   isActive: true,
     //   quantity: 1
     // });
-    this.props.setDish(this.state)
+    this.props.setDish(this.state.dish)
     Actions.uploaddishimage()
+  }
+  onValueChange (value) {
+    console.log(this.state.genres[value])
+    let dish = this.state.dish
+    dish['cuisineType'] = this.state.genres[value]
+    this.setState({
+        selected1 : value, dish
+    },() =>console.log(this.state.dish));
   }
   render() {
     const price = '$'+this.state.donation;
@@ -59,16 +75,24 @@ export default class DishView extends Component {
             <Item>
               <Input
                 placeholder="Name"
-                onChangeText={name => this.setState({ name: name })}
-                value={this.state.name}
+                onChangeText={name => {
+                   let dish = this.state.dish;
+                  dish.name = name;
+                  this.setState({dish},()=>console.log(this.state.dish));
+
+                }}
+                value={this.state.dish.name}
               />
             </Item>
             <Item>
               <Input
                 placeholder="Description"
-                onChangeText={description =>
-                  this.setState({ description })}
-                value={this.state.description}
+                onChangeText={description =>{
+                  let dish = this.state.dish;
+                  dish.description = description
+                  this.setState({dish},()=>console.log(this.state.dish));
+                }}
+                value={this.state.dish.description}
               />
             </Item>
             <Item stackedLabel>
@@ -80,22 +104,41 @@ export default class DishView extends Component {
                     let result = donation.split('')
                     result.shift()
                     result.shift()
-                    this.setState({ donation})
+                    let dish = this.state.dish;
+                    dish.donation = donation
+                    this.setState({ dish},()=> console.log(this.state.dish))
                   }
                   }
               
-                value={this.state.donation}
+                value={this.state.dish.donation}
               />
             </Item>
             <Item>
               <Input
                 placeholder="Quantity"
                 keyboardType={"number-pad"}
-                onChangeText={quantity =>
-                  this.setState({ quantity })}
-                value={this.state.quantity}
+                onChangeText={quantity =>{
+                    let dish = this.state.dish;
+                    dish.quantity = quantity;
+                    this.setState({ dish},()=> console.log(this.state.dish))
+                  }}
+                value={this.state.dish.quantity}
               />
             </Item>
+             <Picker
+                supportedOrientations={['portrait','landscape']}
+                iosHeader="Select one"
+                mode="dropdown"
+                selectedValue={this.state.selected1}
+                onValueChange={this.onValueChange.bind(this)}>
+                {/*<Item label="Select a Cuisine Style" value={0} />*/}
+                { this.state.genres ? this.state.genres.map((curr,ind) => {
+                  return (
+                    <Item label={curr} value={ind} />
+                  );
+
+                }): {}}
+            </Picker>
             <Button style={{ marginTop: 70}} onPress={() => this.handleSubmit()}>
               <Text>Next </Text>
             </Button>

@@ -15,8 +15,8 @@ import DishCreate from "../Components/DishCreate";
 import DishConfirm from "../Components/DishConfirm";
 import SocketIO from "socket.io-client";
 import OrderPanel from "../Components/OrderPanel";
-import OrderView from "../Components/OrderView"
-
+import OrderView from "../Components/OrderView";
+import ChefPanel from "../Components/ChefPanel";
 import axios from "axios";
 // const cstore = store();
 
@@ -42,8 +42,12 @@ class App extends Component {
     this.setCart = this.setCart.bind(this);
     this.setDishDetails =this.setDishDetails.bind(this);
     this.fetchDishDetails = this.fetchDishDetails.bind(this);
+    this.getCuisineStyles = this.getCuisineStyles.bind(this)
   }
-
+  //return array of styles
+  getCuisineStyles(){
+    return "All Cuisines,American,Barbecue,Burgers,Chinese,Indian,Italian,Japanese,Korean,Mediterranean,Mexican,Pizza,Sandwiches,Sushi,Thai,Vegetarian,Vietnamese,American,Ethiopian,Other".split(",");
+  }
   setChef(chef) {
     axios.get(`http://localhost:3000/chef/${chef.authId}`).then(res => {
       this.setState({ user: res.data }, () => {
@@ -115,6 +119,7 @@ class App extends Component {
               key="cuisines"
               component={Cuisines}
               title="Cuisines"
+              getStyles={this.getCuisineStyles}
               setCuisineType={this.setCuisineType}
             />
             <Scene
@@ -131,16 +136,19 @@ class App extends Component {
               component={Profile}
               getChef={this.getChef}
             />
-            <Scene key="dishcreate" component={DishCreate} setDish={this.setDishDetails} title="Create Dish"/>
+            <Scene key="dishcreate" component={DishCreate} setDish={this.setDishDetails} getStyles={this.getCuisineStyles}
+
+title="Create Dish"/>
             <Scene key="dishconfirm" component={DishConfirm} fetchDish={this.fetchDishDetails}/>
             <Scene
               key="uploaddishimage"
               component={UploadImageDish}
               title="Upload Dish"
-              setDish={this.state.setDish}
+              setDish={this.setDishDetails}
               fetchDish={this.fetchDishDetails}
             />
-            <Scene key="chefMap" component={ChefMap} />
+            <Scene key="chefMap" component={ChefMap} setChef={this.setChef} />
+
             <Scene
               key="checkout"
               component={Checkout}
@@ -149,6 +157,7 @@ class App extends Component {
             <Scene key="edit" component={EditProfile} />
             <Scene key="orders" component={OrderPanel} />
             <Scene key="orderView" component={OrderView} title="Order" />
+            <Scene key="chefPanel" component={ChefPanel} title="Chef Panel" />
 
           </Scene>
         </Scene>

@@ -50,6 +50,10 @@ class Upload extends Component {
     if (response.status !== 201)
       throw new Error("Failed to upload image to S3");
     console.log(response.body.postResponse.location);
+    let dish = this.state.dish
+    dish['dishImages']=[response.body.postResponse.location];
+    this.props.setDish(dish)
+    console.log('baby dish',dish)
     Actions.dishconfirm()
     /**
      * {
