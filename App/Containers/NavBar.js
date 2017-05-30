@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
 import { Image, View, StyleSheet, AsyncStorage } from "react-native";
-import { Container, Content, List, ListItem, Thumbnail, Text, Body, Left, Right, Icon } from 'native-base';
-import { Actions, ActionConst } from 'react-native-router-flux';
-=======
-import { View, StyleSheet, AsyncStorage } from "react-native";
 import {
   Container,
   Content,
@@ -14,11 +9,11 @@ import {
   Text,
   Body,
   Left,
-  Right
+  Right,
+  Icon
 } from "native-base";
 import { Actions, ActionConst } from "react-native-router-flux";
 import { Switch } from "react-native-switch";
->>>>>>> 58f2896a3f4e70d3f8801566c802d778e1b7ddc3
 
 export default class NavBar extends Component {
   cuisines() {
@@ -130,7 +125,6 @@ export default class NavBar extends Component {
       }
     }
     return (
-<<<<<<< HEAD
       <Container style={{}}>
 
         <Image source={require('./img/turquoise-top-gradient-background.jpg')} style={styles.backgroundImage} />
