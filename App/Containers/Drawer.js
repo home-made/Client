@@ -20,7 +20,7 @@ export default class NavigationDrawer extends Component {
         type="displace"
         content={<NavBar />}
         tapToClose={true}
-        openDrawerOffset={0.5}
+        openDrawerOffset={0.25}
         panCloseMask={.4}
         negotiatePan={true}
         styles={drawerStyles}

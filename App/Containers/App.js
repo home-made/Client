@@ -10,10 +10,14 @@ import ChefList from "../Components/ChefList";
 import Profile from "../Components/Profile";
 import Checkout from "../Components/Checkout";
 import EditProfile from "../Components/EditProfile";
+
 import UploadImageDish from "../Components/UploadImageDish";
 import DishCreate from "../Components/DishCreate";
 import DishConfirm from "../Components/DishConfirm";
 import SocketIO from "socket.io-client";
+
+import SignaturePage from '../Components/SignaturePage';
+
 import OrderPanel from "../Components/OrderPanel";
 import OrderView from "../Components/OrderView";
 import ChefPanel from "../Components/ChefPanel";
@@ -121,7 +125,6 @@ class App extends Component {
         >
           <Scene key="main" initial>
 
-
             <Scene
               key="cuisines"
               component={Cuisines}
@@ -166,6 +169,8 @@ title="Create Dish"/>
             <Scene key="orders" component={OrderPanel} />
             <Scene key="orderView" component={OrderView} title="Order" />
             <Scene key="userOrders" component={UserOrderPanel} title="Orders" />
+            <Scene key="chefform" component={ChefForm} /> 
+            <Scene key="signature" component={SignaturePage} /> 
 
           </Scene>
         </Scene>
