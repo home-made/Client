@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Camera from "react-native-camera";
 import { Actions } from "react-native-router-flux";
-import { RNS3 } from 'react-native-aws3';
-
 import {
   StyleSheet,
   Text,
@@ -13,76 +11,55 @@ import {
   Dimensions
 } from "react-native";
 import { Container, Content, List, ListItem } from "native-base";
+import RNFetchBlob from "react-native-fetch-blob";
+// import File from 'file-api';
+// require the module
 var RNFS = require("react-native-fs");
 
 class Upload extends Component {
   constructor() {
     super();
   }
-   componentDidMount(){
-    //  console.log('dish is', this.props.fetchDish())
-    this.setState({dish:this.props.fetchDish()},() =>console.log(this.state.dish))
-  }
-  
-
   takePicture() {
-    let opt= {
-      target: Camera.constants.CaptureTarget.disk
-    }
-    this.camera.capture(opt).then(data => {
+    this.camera.capture().then(data => {
       console.log(data);
-      let file = {
-        // `uri` can also be a file system path (i.e. file://) 
-        uri: data.path,
-        name: "image.jpg",
-        type: "image/jpeg"
-      }
-      
-      let options = {
-        keyPrefix: `dish${this.state.dish.name}`,
-        bucket: "homemadedishes",
-        region: "us-east-1",
-        accessKey: "AKIAJXAGIK4OW5YB7DHA",
-        secretKey: "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",
-        successActionStatus: 201
-      }
-    RNS3.put(file, options).then(response => {
-    if (response.status !== 201)
-      throw new Error("Failed to upload image to S3");
-    console.log(response.body.postResponse.location);
-    let dish = this.state.dish
-    dish['dishImages']=[response.body.postResponse.location];
-    this.props.setDish(dish)
-    console.log('baby dish',dish)
-    Actions.dishconfirm()
-    /**
-     * {
-     *   postResponse: {
-     *     bucket: "your-bucket",
-     *     etag : "9f620878e06d28774406017480a59fd4",
-     *     key: "uploads/image.png",
-     *     location: "https://your-bucket.s3.amazonaws.com/uploads%2Fimage.png"
-     *   }
-     * }
-     */
+      // var file = new File({
+      //   name: data.path,       // required
+      //   type: "image/jpeg",         // optional
+      //   buffer: new Buffer("abcdefg,hijklmnop, qrs, tuv, double-u, x, y and z") // a read stream (emits `error`, `data`, `end`)
+      // });
+
+      axios.post("http://localhost:3000/dish/image").then(res => {
+        console.log("res", res);
+      });
+      //   RNFetchBlob.fetch('POST', 'http://localhost:3000/dish/image', {
+      //     Authorization : "Bearer access-token",
+      //     'Content-Type' : 'multipart/form-data',
+      //   }, [
+      //     // append field data from file path
+      //     {
+      //       name : 'image',
+      //       filename : 'image.png',
+      //       data: RNFetchBlob.wrap(data.path)
+      //     }]).then(res=>{
+      //   console.log(res)
+      // }).catch(err => {console.log(err);});
     });
-  })
-}
+  }
 
   render() {
     const { container, preview, capture } = styles;
-
     return (
       <View style={container}>
         <Camera
           ref={cam => {
             this.camera = cam;
           }}
-          style={preview} 
+          style={preview}
           aspect={Camera.constants.Aspect.fill}
         >
           <Text style={capture} onPress={this.takePicture.bind(this)}>
-            CAPTURE
+            [CAPTURE]
           </Text>
         </Camera>
       </View>
@@ -115,7 +92,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     color: "#000",
     padding: 10,
-    margin: 145
+    margin: 40
   }
 });
 
