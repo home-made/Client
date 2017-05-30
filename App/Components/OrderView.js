@@ -1,21 +1,24 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { Button, Container, Text } from "native-base";
+
 
 export default class OrderView extends Component {
   render() {
-    return (
-      <View style={styles.container}>
-        <Text> OrderView.js </Text>
-      </View>
-    );
+    if (this.props.status === 0){
+      return (
+        <Container style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#F5FCFF"}}>
+          <Button><Text>Decline</Text></Button> 
+          <Button><Text>Accept</Text></Button>
+        </Container>
+      )
+    } else {
+      return (
+        <Container style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#F5FCFF"}}>
+          <Text></Text>
+        </Container>
+      )
+    } 
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
-  }
-});

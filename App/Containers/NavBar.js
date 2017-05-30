@@ -1,27 +1,79 @@
 import React, { Component } from "react";
+<<<<<<< HEAD
 import { Image, View, StyleSheet, AsyncStorage } from "react-native";
 import { Container, Content, List, ListItem, Thumbnail, Text, Body, Left, Right, Icon } from 'native-base';
 import { Actions, ActionConst } from 'react-native-router-flux';
+=======
+import { View, StyleSheet, AsyncStorage } from "react-native";
+import {
+  Container,
+  Content,
+  List,
+  ListItem,
+  Thumbnail,
+  Text,
+  Body,
+  Left,
+  Right
+} from "native-base";
+import { Actions, ActionConst } from "react-native-router-flux";
+import { Switch } from "react-native-switch";
+>>>>>>> 58f2896a3f4e70d3f8801566c802d778e1b7ddc3
 
 export default class NavBar extends Component {
-
   cuisines() {
-    Actions.cuisines({type:ActionConst.RESET});
-    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
+    Actions.cuisines({ type: ActionConst.RESET });
+    setTimeout(() => Actions.refresh({ key: "drawer", open: false }), 0);
+  }
+
+  chefList() {
+    Actions.chefList({ type: ActionConst.RESET });
+    setTimeout(() => Actions.refresh({ key: "drawer", open: false }), 0);
   }
 
   profile() {
-    Actions.profile({type:ActionConst.RESET});
-    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
+    Actions.profile({ type: ActionConst.RESET });
+    setTimeout(() => Actions.refresh({ key: "drawer", open: false }), 0);
   }
+
   chefMap() {
-    Actions.chefMap({type:ActionConst.RESET});
-    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
+    Actions.chefMap({ type: ActionConst.RESET });
+    setTimeout(() => Actions.refresh({ key: "drawer", open: false }), 0);
   }
-  
+
+  checkout() {
+    Actions.checkout({ type: ActionConst.RESET });
+    setTimeout(() => Actions.refresh({ key: "drawer", open: false }), 0);
+  }
+
   edit() {
-    Actions.edit({type:ActionConst.RESET});
-    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
+    Actions.edit({ type: ActionConst.RESET });
+    setTimeout(() => Actions.refresh({ key: "drawer", open: false }), 0);
+  }
+
+  orders() {
+    let chefView;
+    async function getChefViewBool() {
+      try {
+        const data = await AsyncStorage.getItem("profile");
+        if (data !== null && data !== undefined) {
+          data = JSON.parse(data);
+          chefView = data.chefView;
+        }
+      } catch (err) {
+        console.log("Error getting data: ", err);
+      }
+    }
+    getChefViewBool().then(() => {
+      console.log("chefView is", chefView);
+      if (chefView) {
+        Actions.orders({ type: ActionConst.RESET });
+      } else {
+        Actions.userOrders({ type: ActionConst.RESET });
+      }
+    });
+
+    setTimeout(() => Actions.refresh({ key: "drawer", open: false }), 0);
   }
 
   chefform() {
@@ -30,18 +82,36 @@ export default class NavBar extends Component {
   }
 
   logout() {
-    Actions.homepage({type:ActionConst.RESET});
+    Actions.homepage({ type: ActionConst.RESET });
     async function clearStorage() {
       try {
-        await AsyncStorage.multiRemove(['profile', 'token', 'isAuthenticated'], () => {
-          console.log('Storage cleared!');
-        })
+        await AsyncStorage.multiRemove(
+          ["profile", "token", "isAuthenticated"],
+          () => {
+            console.log("Storage cleared!");
+          }
+        );
       } catch (err) {
-        console.log('Error clearing storage: ', err);
+        console.log("Error clearing storage: ", err);
       }
     }
     clearStorage();
-    setTimeout(() => Actions.refresh({ key: 'drawer', open: false }), 0)
+    setTimeout(() => Actions.refresh({ key: "drawer", open: false }), 0);
+  }
+
+  async toggleChefMode() {
+    try {
+      const profile = await AsyncStorage.getItem("profile");
+
+      profile = JSON.parse(profile);
+      profile.chefView = !profile.chefView;
+      profile = JSON.stringify(profile);
+      if (profile !== null && profile !== undefined) {
+        await AsyncStorage.setItem("profile", profile);
+      }
+    } catch (err) {
+      console.log("Error getting data: ", err);
+    }
   }
 
   render() {
@@ -60,6 +130,7 @@ export default class NavBar extends Component {
       }
     }
     return (
+<<<<<<< HEAD
       <Container style={{}}>
 
         <Image source={require('./img/turquoise-top-gradient-background.jpg')} style={styles.backgroundImage} />
@@ -109,12 +180,35 @@ export default class NavBar extends Component {
               <Text style={styles.entries}>Be A Chef!</Text>
             </Body>
           </ListItem>
+          <ListItem icon onPress={this.orders} style={styles.content}>
+            <Left>
+              <Icon name='ios-filing' />
+            </Left>
+            <Body>
+              <Text>Orders</Text>
+            </Body>
+          </ListItem>
           <ListItem icon onPress={this.logout} style={styles.content}>
             <Left>
               <Icon name='ios-exit' />
             </Left>
             <Body>
               <Text style={styles.entries}>Log Out</Text>
+            </Body>
+          </ListItem>
+          <ListItem avatar>
+            <Body>
+              <Text>Chef Mode</Text>
+              <Text />
+              <Switch
+                value={true}
+                onValueChange={this.toggleChefMode}
+                disabled={false}
+                backgroundActive={"green"}
+                backgroundInactive={"gray"}
+                circleActiveColor={"white"}
+                circleInActiveColor={"white"}
+              />
             </Body>
           </ListItem>
         </Content>
