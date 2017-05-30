@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, StyleSheet } from "react-native";
 import { Container, Content, Button, Icon, Text } from 'native-base';
+import { Actions } from 'react-native-router-flux';
 
 export default class ChefForm extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ export default class ChefForm extends Component {
     return (
       <View style={styles.container}>
         <View>
-          <Button transparent primary iconLeft large bordered>
+          <Button transparent primary iconLeft large bordered onPress={() => { Actions.signature() }}>
             <Icon name="beer" />
             <Text>Become a Chef!</Text>
           </Button>

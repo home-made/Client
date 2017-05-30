@@ -14,6 +14,7 @@ import ClickedProfile from "../Components/ClickedProfile";
 import Checkout from "../Components/Checkout";
 import EditProfile from "../Components/EditProfile";
 import ChefForm from '../Containers/ChefForm';
+import SignaturePage from '../Components/SignaturePage';
 
 import axios from "axios";
 // const cstore = store();
@@ -90,6 +91,7 @@ class App extends Component {
             <Scene key="checkout" component={Checkout} fetchCart={this.fetchCart}/> 
             <Scene key="edit" component={EditProfile} /> 
             <Scene key="chefform" component={ChefForm} /> 
+            <Scene key="signature" component={SignaturePage} /> 
           </Scene>
         </Scene>
       </Scene>
