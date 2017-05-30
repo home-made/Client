@@ -112,7 +112,7 @@ export default class NavBar extends Component {
   render() {
     const styles = {
       content: {
-        marginTop: 22,
+        marginTop: 20,
         justifyContent: 'center',
         alignItems: 'center'
       },
@@ -179,7 +179,7 @@ export default class NavBar extends Component {
               <Icon name='ios-filing' />
             </Left>
             <Body>
-              <Text>Orders</Text>
+              <Text style={styles.entries}>Orders</Text>
             </Body>
           </ListItem>
           <ListItem icon onPress={this.logout} style={styles.content}>
@@ -192,7 +192,7 @@ export default class NavBar extends Component {
           </ListItem>
           <ListItem avatar>
             <Body>
-              <Text>Chef Mode</Text>
+              <Text style={styles.entries}>Chef Mode</Text>
               <Text />
               <Switch
                 value={true}
