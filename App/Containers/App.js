@@ -64,7 +64,6 @@ class App extends Component {
   }
 
   getChef() {
-    console.log("INSIDE GET CHEF", this.state.user);
     return this.state.user;
   }
 
@@ -74,13 +73,12 @@ class App extends Component {
       let url = `http://localhost:3000/chef/style/${this.state.cuisineType}`;
       axios
         .get(url)
-        .then(res =>
+        .then(res => {
+          console.log("res.data inside App.js for setCuisine is ", res.data)
           this.setState({ chefs: res.data }, () => {
-            if (res.data.length > 0) {
-              Actions.chefList({ type: ActionConst.RESET });
-            }
+            Actions.chefList({ type: ActionConst.RESET });
           })
-        )
+        })
         .catch(err => {
           console.log("ERROR IS", err);
         });
@@ -88,6 +86,7 @@ class App extends Component {
   }
 
   fetchChefs() {
+    console.log("the chefs inside fetchchefs are ", this.state.chefs)
     return this.state.chefs;
   }
   fetchDishDetails() {
@@ -95,8 +94,7 @@ class App extends Component {
     return this.state.dish;
   }
   setDishDetails(dish) {
-    console.log('dish set',dish)
-    this.setState({dish});
+    this.setState({dish},()=> console.log('dish set',this.state.dish));
   }
   setCart(cart) {
     this.setState({ checkout: cart });
@@ -149,7 +147,7 @@ class App extends Component {
             <Scene key="dishcreate" component={DishCreate} setDish={this.setDishDetails} getStyles={this.getCuisineStyles}
 
 title="Create Dish"/>
-            <Scene key="dishconfirm" component={DishConfirm} fetchDish={this.fetchDishDetails}/>
+            <Scene key="dishconfirm" component={DishConfirm} setDish={this.setDishDetails}  fetchDish={this.fetchDishDetails}/>
             <Scene
               key="uploaddishimage"
               component={UploadImageDish}

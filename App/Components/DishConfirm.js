@@ -25,43 +25,43 @@ export default class DishConfirm extends Component {
   }
   componentWillMount(){
     console.log('mounted big fella confirm big fella')
-    this.setState({dish:this.props.fetchDish()},() =>console.log(this.state.dish))
-    let userId, userName, userPic;
-    async function getProfile() {
-      try {
-        const data = await AsyncStorage.getItem('profile');
-        if (data !== null && data !== undefined) {
-          // console.log('async data: ', data);
-          data = JSON.parse(data);
-          userId = data.identityId, userName = data.name, userPic = data.extraInfo.picture_large;
+    this.setState({dish:this.props.fetchDish()},() =>{
+      let userId, userName, userPic;
+      let dish = this.state.dish
+      async function getProfile() {
+        try {
+          const data = await AsyncStorage.getItem('profile');
+          if (data !== null && data !== undefined) {
+            data = JSON.parse(data);
+            console.log(data.userId)
+            console.log('dish',dish)
+            userId = data.userId
+            return userId
+            
         }
-      } catch (err) {
-        console.log('Error getting data: ', err);
+        } catch (err) {
+          console.log('Error getting data: ', err);
+        }
       }
-    }
-
-    getProfile()
-      .then(() => {
-        this.setState({ userId: userId, userName: userName, userPic: userPic })
-      })
+      getProfile()
+        .then((res) => {
+          dish.chefId = res
+          dish.isActive = false
+          dish.allergies = []
+          this.setState({dish},()=> {
+            console.log(this.state.dish)
+            this.props.setDish(dish)
+          })
+        })
+      
+    })
   }
   onSubmit() {
-    let dish = this.state.dish;
-    dish['chefId']= this.state.userId
-    console.log(dish)
-    // axios.post("http://localhost:3000/dish/add", {
-    //   cuisineType: "Chinese",
-    //   name: this.state.name,
-    //   description: this.state.dishDescriptionText,
-    //   dishImages: [
-    //     "https://media-cdn.tripadvisor.com/media/photo-s/02/39/2d/21/chinese-dumplings-with.jpg"
-    //   ],
-    //   chefId: "7564fjasdif",
-    //   allergies: ["none"],
-    //   cashDonation: 8,
-    //   isActive: true,
-    //   quantity: 1
-    // });
+    axios.post("http://localhost:3000/dish/add", this.state.dish)
+    .then(res => {
+      console.log(res)
+      Actions.chefPanel()
+    })
   }
   render() {
     const { container } = styles;
@@ -85,7 +85,7 @@ export default class DishConfirm extends Component {
           <Right />
 
         <Content padder>
-           <Button onPress={() => this.handleSubmit()}>
+           <Button onPress={() => this.onSubmit()}>
               <Text>Confirm </Text>
             </Button>
         </Content>

@@ -87,6 +87,7 @@ export default class HomePage extends Component {
             .catch(err => console.log(err));
 
           async function setStorage() {
+          console.log('whoa')
             try {
               await AsyncStorage.multiSet(
                 [
@@ -111,6 +112,7 @@ export default class HomePage extends Component {
         }
       }
     );
+     console.log('whoa2')
   }
 
   showDrawer() {
